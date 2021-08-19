@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/d/share/code/local_tcp_client.c
+sys/socket.h
+-
+sys/types.h
+-
+netinet/in.h
+-
+sys/un.h
+-
+string.h
+-
+stdio.h
+-
+unistd.h
+-
+stdlib.h
+-
+errno.h
+-
+

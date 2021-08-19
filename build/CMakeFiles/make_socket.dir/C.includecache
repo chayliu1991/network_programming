@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/d/share/code/make_socket.c
+netinet/in.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+stdio.h
+-
+unistd.h
+-
+stdlib.h
+-
+

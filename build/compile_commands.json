@@ -1,0 +1,47 @@
+[
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/local_udp_client.dir/local_udp_client.c.o   -c /mnt/d/share/code/local_udp_client.c",
+  "file": "/mnt/d/share/code/local_udp_client.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/local_udp_server.dir/local_udp_server.c.o   -c /mnt/d/share/code/local_udp_server.c",
+  "file": "/mnt/d/share/code/local_udp_server.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/local_tcp_client.dir/local_tcp_client.c.o   -c /mnt/d/share/code/local_tcp_client.c",
+  "file": "/mnt/d/share/code/local_tcp_client.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/udp_client.dir/udp_client.c.o   -c /mnt/d/share/code/udp_client.c",
+  "file": "/mnt/d/share/code/udp_client.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/local_tcp_server.dir/local_tcp_server.c.o   -c /mnt/d/share/code/local_tcp_server.c",
+  "file": "/mnt/d/share/code/local_tcp_server.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/udp_server.dir/udp_server.c.o   -c /mnt/d/share/code/udp_server.c",
+  "file": "/mnt/d/share/code/udp_server.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/tcp_client.dir/tcp_client.c.o   -c /mnt/d/share/code/tcp_client.c",
+  "file": "/mnt/d/share/code/tcp_client.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/tcp_server.dir/tcp_server.c.o   -c /mnt/d/share/code/tcp_server.c",
+  "file": "/mnt/d/share/code/tcp_server.c"
+},
+{
+  "directory": "/mnt/d/share/code/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-9   -g   -o CMakeFiles/make_socket.dir/make_socket.c.o   -c /mnt/d/share/code/make_socket.c",
+  "file": "/mnt/d/share/code/make_socket.c"
+}
+]
