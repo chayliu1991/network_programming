@@ -15,3 +15,14 @@ add_executable(local_tcp_client local_tcp_client.c)
 add_executable(local_udp_server local_udp_server.c)
 add_executable(local_udp_client local_udp_client.c)
 
+
+add_executable(grace_server grace_server.c)
+add_executable(grace_client grace_client.c)
+
+
+add_executable(ping_server ping_server.c)
+add_executable(ping_client ping_client.c)
+
+
+
+

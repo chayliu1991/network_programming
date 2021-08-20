@@ -53,15 +53,19 @@ CMAKE_BINARY_DIR = /mnt/d/share/code/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/local_udp_client.dir/all
-all: CMakeFiles/local_udp_server.dir/all
-all: CMakeFiles/local_tcp_client.dir/all
-all: CMakeFiles/udp_client.dir/all
-all: CMakeFiles/local_tcp_server.dir/all
-all: CMakeFiles/udp_server.dir/all
-all: CMakeFiles/tcp_client.dir/all
-all: CMakeFiles/tcp_server.dir/all
 all: CMakeFiles/make_socket.dir/all
+all: CMakeFiles/grace_server.dir/all
+all: CMakeFiles/tcp_server.dir/all
+all: CMakeFiles/grace_client.dir/all
+all: CMakeFiles/tcp_client.dir/all
+all: CMakeFiles/local_tcp_server.dir/all
+all: CMakeFiles/udp_client.dir/all
+all: CMakeFiles/local_tcp_client.dir/all
+all: CMakeFiles/udp_server.dir/all
+all: CMakeFiles/local_udp_server.dir/all
+all: CMakeFiles/local_udp_client.dir/all
+all: CMakeFiles/ping_server.dir/all
+all: CMakeFiles/ping_client.dir/all
 
 .PHONY : all
 
@@ -71,206 +75,75 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/local_udp_client.dir/clean
-clean: CMakeFiles/local_udp_server.dir/clean
-clean: CMakeFiles/local_tcp_client.dir/clean
-clean: CMakeFiles/udp_client.dir/clean
-clean: CMakeFiles/local_tcp_server.dir/clean
-clean: CMakeFiles/udp_server.dir/clean
-clean: CMakeFiles/tcp_client.dir/clean
-clean: CMakeFiles/tcp_server.dir/clean
 clean: CMakeFiles/make_socket.dir/clean
+clean: CMakeFiles/grace_server.dir/clean
+clean: CMakeFiles/tcp_server.dir/clean
+clean: CMakeFiles/grace_client.dir/clean
+clean: CMakeFiles/tcp_client.dir/clean
+clean: CMakeFiles/local_tcp_server.dir/clean
+clean: CMakeFiles/udp_client.dir/clean
+clean: CMakeFiles/local_tcp_client.dir/clean
+clean: CMakeFiles/udp_server.dir/clean
+clean: CMakeFiles/local_udp_server.dir/clean
+clean: CMakeFiles/local_udp_client.dir/clean
+clean: CMakeFiles/ping_server.dir/clean
+clean: CMakeFiles/ping_client.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/local_udp_client.dir
+# Target rules for target CMakeFiles/make_socket.dir
 
 # All Build rule for target.
-CMakeFiles/local_udp_client.dir/all:
-	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/depend
-	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=5,6 "Built target local_udp_client"
-.PHONY : CMakeFiles/local_udp_client.dir/all
+CMakeFiles/make_socket.dir/all:
+	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/depend
+	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=13,14 "Built target make_socket"
+.PHONY : CMakeFiles/make_socket.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/local_udp_client.dir/rule: cmake_check_build_system
+CMakeFiles/make_socket.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_udp_client.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/make_socket.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/local_udp_client.dir/rule
+.PHONY : CMakeFiles/make_socket.dir/rule
 
 # Convenience name for target.
-local_udp_client: CMakeFiles/local_udp_client.dir/rule
+make_socket: CMakeFiles/make_socket.dir/rule
 
-.PHONY : local_udp_client
+.PHONY : make_socket
 
 # clean rule for target.
-CMakeFiles/local_udp_client.dir/clean:
-	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/clean
-.PHONY : CMakeFiles/local_udp_client.dir/clean
+CMakeFiles/make_socket.dir/clean:
+	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/clean
+.PHONY : CMakeFiles/make_socket.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/local_udp_server.dir
+# Target rules for target CMakeFiles/grace_server.dir
 
 # All Build rule for target.
-CMakeFiles/local_udp_server.dir/all:
-	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/depend
-	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=7,8 "Built target local_udp_server"
-.PHONY : CMakeFiles/local_udp_server.dir/all
+CMakeFiles/grace_server.dir/all:
+	$(MAKE) -f CMakeFiles/grace_server.dir/build.make CMakeFiles/grace_server.dir/depend
+	$(MAKE) -f CMakeFiles/grace_server.dir/build.make CMakeFiles/grace_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=3,4 "Built target grace_server"
+.PHONY : CMakeFiles/grace_server.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/local_udp_server.dir/rule: cmake_check_build_system
+CMakeFiles/grace_server.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_udp_server.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/grace_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/local_udp_server.dir/rule
+.PHONY : CMakeFiles/grace_server.dir/rule
 
 # Convenience name for target.
-local_udp_server: CMakeFiles/local_udp_server.dir/rule
+grace_server: CMakeFiles/grace_server.dir/rule
 
-.PHONY : local_udp_server
-
-# clean rule for target.
-CMakeFiles/local_udp_server.dir/clean:
-	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/clean
-.PHONY : CMakeFiles/local_udp_server.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/local_tcp_client.dir
-
-# All Build rule for target.
-CMakeFiles/local_tcp_client.dir/all:
-	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/depend
-	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=1,2 "Built target local_tcp_client"
-.PHONY : CMakeFiles/local_tcp_client.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/local_tcp_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_tcp_client.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/local_tcp_client.dir/rule
-
-# Convenience name for target.
-local_tcp_client: CMakeFiles/local_tcp_client.dir/rule
-
-.PHONY : local_tcp_client
+.PHONY : grace_server
 
 # clean rule for target.
-CMakeFiles/local_tcp_client.dir/clean:
-	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/clean
-.PHONY : CMakeFiles/local_tcp_client.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/udp_client.dir
-
-# All Build rule for target.
-CMakeFiles/udp_client.dir/all:
-	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/depend
-	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=15,16 "Built target udp_client"
-.PHONY : CMakeFiles/udp_client.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/udp_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/udp_client.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/udp_client.dir/rule
-
-# Convenience name for target.
-udp_client: CMakeFiles/udp_client.dir/rule
-
-.PHONY : udp_client
-
-# clean rule for target.
-CMakeFiles/udp_client.dir/clean:
-	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/clean
-.PHONY : CMakeFiles/udp_client.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/local_tcp_server.dir
-
-# All Build rule for target.
-CMakeFiles/local_tcp_server.dir/all:
-	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/depend
-	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=3,4 "Built target local_tcp_server"
-.PHONY : CMakeFiles/local_tcp_server.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/local_tcp_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_tcp_server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/local_tcp_server.dir/rule
-
-# Convenience name for target.
-local_tcp_server: CMakeFiles/local_tcp_server.dir/rule
-
-.PHONY : local_tcp_server
-
-# clean rule for target.
-CMakeFiles/local_tcp_server.dir/clean:
-	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/clean
-.PHONY : CMakeFiles/local_tcp_server.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/udp_server.dir
-
-# All Build rule for target.
-CMakeFiles/udp_server.dir/all:
-	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/depend
-	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=17,18 "Built target udp_server"
-.PHONY : CMakeFiles/udp_server.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/udp_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/udp_server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/udp_server.dir/rule
-
-# Convenience name for target.
-udp_server: CMakeFiles/udp_server.dir/rule
-
-.PHONY : udp_server
-
-# clean rule for target.
-CMakeFiles/udp_server.dir/clean:
-	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/clean
-.PHONY : CMakeFiles/udp_server.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/tcp_client.dir
-
-# All Build rule for target.
-CMakeFiles/tcp_client.dir/all:
-	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/depend
-	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=11,12 "Built target tcp_client"
-.PHONY : CMakeFiles/tcp_client.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/tcp_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tcp_client.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/tcp_client.dir/rule
-
-# Convenience name for target.
-tcp_client: CMakeFiles/tcp_client.dir/rule
-
-.PHONY : tcp_client
-
-# clean rule for target.
-CMakeFiles/tcp_client.dir/clean:
-	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/clean
-.PHONY : CMakeFiles/tcp_client.dir/clean
+CMakeFiles/grace_server.dir/clean:
+	$(MAKE) -f CMakeFiles/grace_server.dir/build.make CMakeFiles/grace_server.dir/clean
+.PHONY : CMakeFiles/grace_server.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/tcp_server.dir
@@ -279,7 +152,7 @@ CMakeFiles/tcp_client.dir/clean:
 CMakeFiles/tcp_server.dir/all:
 	$(MAKE) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/depend
 	$(MAKE) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=13,14 "Built target tcp_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=21,22 "Built target tcp_server"
 .PHONY : CMakeFiles/tcp_server.dir/all
 
 # Build rule for subdir invocation for target.
@@ -300,31 +173,274 @@ CMakeFiles/tcp_server.dir/clean:
 .PHONY : CMakeFiles/tcp_server.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/make_socket.dir
+# Target rules for target CMakeFiles/grace_client.dir
 
 # All Build rule for target.
-CMakeFiles/make_socket.dir/all:
-	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/depend
-	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=9,10 "Built target make_socket"
-.PHONY : CMakeFiles/make_socket.dir/all
+CMakeFiles/grace_client.dir/all:
+	$(MAKE) -f CMakeFiles/grace_client.dir/build.make CMakeFiles/grace_client.dir/depend
+	$(MAKE) -f CMakeFiles/grace_client.dir/build.make CMakeFiles/grace_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=1,2 "Built target grace_client"
+.PHONY : CMakeFiles/grace_client.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/make_socket.dir/rule: cmake_check_build_system
+CMakeFiles/grace_client.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/make_socket.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/grace_client.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
-.PHONY : CMakeFiles/make_socket.dir/rule
+.PHONY : CMakeFiles/grace_client.dir/rule
 
 # Convenience name for target.
-make_socket: CMakeFiles/make_socket.dir/rule
+grace_client: CMakeFiles/grace_client.dir/rule
 
-.PHONY : make_socket
+.PHONY : grace_client
 
 # clean rule for target.
-CMakeFiles/make_socket.dir/clean:
-	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/clean
-.PHONY : CMakeFiles/make_socket.dir/clean
+CMakeFiles/grace_client.dir/clean:
+	$(MAKE) -f CMakeFiles/grace_client.dir/build.make CMakeFiles/grace_client.dir/clean
+.PHONY : CMakeFiles/grace_client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/tcp_client.dir
+
+# All Build rule for target.
+CMakeFiles/tcp_client.dir/all:
+	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/depend
+	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=19,20 "Built target tcp_client"
+.PHONY : CMakeFiles/tcp_client.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/tcp_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tcp_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/tcp_client.dir/rule
+
+# Convenience name for target.
+tcp_client: CMakeFiles/tcp_client.dir/rule
+
+.PHONY : tcp_client
+
+# clean rule for target.
+CMakeFiles/tcp_client.dir/clean:
+	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/clean
+.PHONY : CMakeFiles/tcp_client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/local_tcp_server.dir
+
+# All Build rule for target.
+CMakeFiles/local_tcp_server.dir/all:
+	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/depend
+	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=7,8 "Built target local_tcp_server"
+.PHONY : CMakeFiles/local_tcp_server.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/local_tcp_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_tcp_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/local_tcp_server.dir/rule
+
+# Convenience name for target.
+local_tcp_server: CMakeFiles/local_tcp_server.dir/rule
+
+.PHONY : local_tcp_server
+
+# clean rule for target.
+CMakeFiles/local_tcp_server.dir/clean:
+	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/clean
+.PHONY : CMakeFiles/local_tcp_server.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/udp_client.dir
+
+# All Build rule for target.
+CMakeFiles/udp_client.dir/all:
+	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/depend
+	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=23,24 "Built target udp_client"
+.PHONY : CMakeFiles/udp_client.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/udp_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/udp_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/udp_client.dir/rule
+
+# Convenience name for target.
+udp_client: CMakeFiles/udp_client.dir/rule
+
+.PHONY : udp_client
+
+# clean rule for target.
+CMakeFiles/udp_client.dir/clean:
+	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/clean
+.PHONY : CMakeFiles/udp_client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/local_tcp_client.dir
+
+# All Build rule for target.
+CMakeFiles/local_tcp_client.dir/all:
+	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/depend
+	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=5,6 "Built target local_tcp_client"
+.PHONY : CMakeFiles/local_tcp_client.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/local_tcp_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_tcp_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/local_tcp_client.dir/rule
+
+# Convenience name for target.
+local_tcp_client: CMakeFiles/local_tcp_client.dir/rule
+
+.PHONY : local_tcp_client
+
+# clean rule for target.
+CMakeFiles/local_tcp_client.dir/clean:
+	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/clean
+.PHONY : CMakeFiles/local_tcp_client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/udp_server.dir
+
+# All Build rule for target.
+CMakeFiles/udp_server.dir/all:
+	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/depend
+	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=25,26 "Built target udp_server"
+.PHONY : CMakeFiles/udp_server.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/udp_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/udp_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/udp_server.dir/rule
+
+# Convenience name for target.
+udp_server: CMakeFiles/udp_server.dir/rule
+
+.PHONY : udp_server
+
+# clean rule for target.
+CMakeFiles/udp_server.dir/clean:
+	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/clean
+.PHONY : CMakeFiles/udp_server.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/local_udp_server.dir
+
+# All Build rule for target.
+CMakeFiles/local_udp_server.dir/all:
+	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/depend
+	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=11,12 "Built target local_udp_server"
+.PHONY : CMakeFiles/local_udp_server.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/local_udp_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_udp_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/local_udp_server.dir/rule
+
+# Convenience name for target.
+local_udp_server: CMakeFiles/local_udp_server.dir/rule
+
+.PHONY : local_udp_server
+
+# clean rule for target.
+CMakeFiles/local_udp_server.dir/clean:
+	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/clean
+.PHONY : CMakeFiles/local_udp_server.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/local_udp_client.dir
+
+# All Build rule for target.
+CMakeFiles/local_udp_client.dir/all:
+	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/depend
+	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=9,10 "Built target local_udp_client"
+.PHONY : CMakeFiles/local_udp_client.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/local_udp_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/local_udp_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/local_udp_client.dir/rule
+
+# Convenience name for target.
+local_udp_client: CMakeFiles/local_udp_client.dir/rule
+
+.PHONY : local_udp_client
+
+# clean rule for target.
+CMakeFiles/local_udp_client.dir/clean:
+	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/clean
+.PHONY : CMakeFiles/local_udp_client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ping_server.dir
+
+# All Build rule for target.
+CMakeFiles/ping_server.dir/all:
+	$(MAKE) -f CMakeFiles/ping_server.dir/build.make CMakeFiles/ping_server.dir/depend
+	$(MAKE) -f CMakeFiles/ping_server.dir/build.make CMakeFiles/ping_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=17,18 "Built target ping_server"
+.PHONY : CMakeFiles/ping_server.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ping_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ping_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/ping_server.dir/rule
+
+# Convenience name for target.
+ping_server: CMakeFiles/ping_server.dir/rule
+
+.PHONY : ping_server
+
+# clean rule for target.
+CMakeFiles/ping_server.dir/clean:
+	$(MAKE) -f CMakeFiles/ping_server.dir/build.make CMakeFiles/ping_server.dir/clean
+.PHONY : CMakeFiles/ping_server.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ping_client.dir
+
+# All Build rule for target.
+CMakeFiles/ping_client.dir/all:
+	$(MAKE) -f CMakeFiles/ping_client.dir/build.make CMakeFiles/ping_client.dir/depend
+	$(MAKE) -f CMakeFiles/ping_client.dir/build.make CMakeFiles/ping_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/share/code/build/CMakeFiles --progress-num=15,16 "Built target ping_client"
+.PHONY : CMakeFiles/ping_client.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ping_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ping_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/share/code/build/CMakeFiles 0
+.PHONY : CMakeFiles/ping_client.dir/rule
+
+# Convenience name for target.
+ping_client: CMakeFiles/ping_client.dir/rule
+
+.PHONY : ping_client
+
+# clean rule for target.
+CMakeFiles/ping_client.dir/clean:
+	$(MAKE) -f CMakeFiles/ping_client.dir/build.make CMakeFiles/ping_client.dir/clean
+.PHONY : CMakeFiles/ping_client.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

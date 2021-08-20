@@ -45,13 +45,17 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/local_udp_client.dir/DependInfo.cmake"
-  "CMakeFiles/local_udp_server.dir/DependInfo.cmake"
-  "CMakeFiles/local_tcp_client.dir/DependInfo.cmake"
-  "CMakeFiles/udp_client.dir/DependInfo.cmake"
-  "CMakeFiles/local_tcp_server.dir/DependInfo.cmake"
-  "CMakeFiles/udp_server.dir/DependInfo.cmake"
-  "CMakeFiles/tcp_client.dir/DependInfo.cmake"
-  "CMakeFiles/tcp_server.dir/DependInfo.cmake"
   "CMakeFiles/make_socket.dir/DependInfo.cmake"
+  "CMakeFiles/grace_server.dir/DependInfo.cmake"
+  "CMakeFiles/tcp_server.dir/DependInfo.cmake"
+  "CMakeFiles/grace_client.dir/DependInfo.cmake"
+  "CMakeFiles/tcp_client.dir/DependInfo.cmake"
+  "CMakeFiles/local_tcp_server.dir/DependInfo.cmake"
+  "CMakeFiles/udp_client.dir/DependInfo.cmake"
+  "CMakeFiles/local_tcp_client.dir/DependInfo.cmake"
+  "CMakeFiles/udp_server.dir/DependInfo.cmake"
+  "CMakeFiles/local_udp_server.dir/DependInfo.cmake"
+  "CMakeFiles/local_udp_client.dir/DependInfo.cmake"
+  "CMakeFiles/ping_server.dir/DependInfo.cmake"
+  "CMakeFiles/ping_client.dir/DependInfo.cmake"
   )

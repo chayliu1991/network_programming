@@ -111,95 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named local_udp_client
+# Target rules for targets named make_socket
 
 # Build rule for target.
-local_udp_client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 local_udp_client
-.PHONY : local_udp_client
+make_socket: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 make_socket
+.PHONY : make_socket
 
 # fast build rule for target.
-local_udp_client/fast:
-	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/build
-.PHONY : local_udp_client/fast
+make_socket/fast:
+	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/build
+.PHONY : make_socket/fast
 
 #=============================================================================
-# Target rules for targets named local_udp_server
+# Target rules for targets named grace_server
 
 # Build rule for target.
-local_udp_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 local_udp_server
-.PHONY : local_udp_server
+grace_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grace_server
+.PHONY : grace_server
 
 # fast build rule for target.
-local_udp_server/fast:
-	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/build
-.PHONY : local_udp_server/fast
-
-#=============================================================================
-# Target rules for targets named local_tcp_client
-
-# Build rule for target.
-local_tcp_client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 local_tcp_client
-.PHONY : local_tcp_client
-
-# fast build rule for target.
-local_tcp_client/fast:
-	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/build
-.PHONY : local_tcp_client/fast
-
-#=============================================================================
-# Target rules for targets named udp_client
-
-# Build rule for target.
-udp_client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 udp_client
-.PHONY : udp_client
-
-# fast build rule for target.
-udp_client/fast:
-	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/build
-.PHONY : udp_client/fast
-
-#=============================================================================
-# Target rules for targets named local_tcp_server
-
-# Build rule for target.
-local_tcp_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 local_tcp_server
-.PHONY : local_tcp_server
-
-# fast build rule for target.
-local_tcp_server/fast:
-	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/build
-.PHONY : local_tcp_server/fast
-
-#=============================================================================
-# Target rules for targets named udp_server
-
-# Build rule for target.
-udp_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 udp_server
-.PHONY : udp_server
-
-# fast build rule for target.
-udp_server/fast:
-	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/build
-.PHONY : udp_server/fast
-
-#=============================================================================
-# Target rules for targets named tcp_client
-
-# Build rule for target.
-tcp_client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tcp_client
-.PHONY : tcp_client
-
-# fast build rule for target.
-tcp_client/fast:
-	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/build
-.PHONY : tcp_client/fast
+grace_server/fast:
+	$(MAKE) -f CMakeFiles/grace_server.dir/build.make CMakeFiles/grace_server.dir/build
+.PHONY : grace_server/fast
 
 #=============================================================================
 # Target rules for targets named tcp_server
@@ -215,17 +150,188 @@ tcp_server/fast:
 .PHONY : tcp_server/fast
 
 #=============================================================================
-# Target rules for targets named make_socket
+# Target rules for targets named grace_client
 
 # Build rule for target.
-make_socket: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 make_socket
-.PHONY : make_socket
+grace_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grace_client
+.PHONY : grace_client
 
 # fast build rule for target.
-make_socket/fast:
-	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/build
-.PHONY : make_socket/fast
+grace_client/fast:
+	$(MAKE) -f CMakeFiles/grace_client.dir/build.make CMakeFiles/grace_client.dir/build
+.PHONY : grace_client/fast
+
+#=============================================================================
+# Target rules for targets named tcp_client
+
+# Build rule for target.
+tcp_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tcp_client
+.PHONY : tcp_client
+
+# fast build rule for target.
+tcp_client/fast:
+	$(MAKE) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/build
+.PHONY : tcp_client/fast
+
+#=============================================================================
+# Target rules for targets named local_tcp_server
+
+# Build rule for target.
+local_tcp_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 local_tcp_server
+.PHONY : local_tcp_server
+
+# fast build rule for target.
+local_tcp_server/fast:
+	$(MAKE) -f CMakeFiles/local_tcp_server.dir/build.make CMakeFiles/local_tcp_server.dir/build
+.PHONY : local_tcp_server/fast
+
+#=============================================================================
+# Target rules for targets named udp_client
+
+# Build rule for target.
+udp_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 udp_client
+.PHONY : udp_client
+
+# fast build rule for target.
+udp_client/fast:
+	$(MAKE) -f CMakeFiles/udp_client.dir/build.make CMakeFiles/udp_client.dir/build
+.PHONY : udp_client/fast
+
+#=============================================================================
+# Target rules for targets named local_tcp_client
+
+# Build rule for target.
+local_tcp_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 local_tcp_client
+.PHONY : local_tcp_client
+
+# fast build rule for target.
+local_tcp_client/fast:
+	$(MAKE) -f CMakeFiles/local_tcp_client.dir/build.make CMakeFiles/local_tcp_client.dir/build
+.PHONY : local_tcp_client/fast
+
+#=============================================================================
+# Target rules for targets named udp_server
+
+# Build rule for target.
+udp_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 udp_server
+.PHONY : udp_server
+
+# fast build rule for target.
+udp_server/fast:
+	$(MAKE) -f CMakeFiles/udp_server.dir/build.make CMakeFiles/udp_server.dir/build
+.PHONY : udp_server/fast
+
+#=============================================================================
+# Target rules for targets named local_udp_server
+
+# Build rule for target.
+local_udp_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 local_udp_server
+.PHONY : local_udp_server
+
+# fast build rule for target.
+local_udp_server/fast:
+	$(MAKE) -f CMakeFiles/local_udp_server.dir/build.make CMakeFiles/local_udp_server.dir/build
+.PHONY : local_udp_server/fast
+
+#=============================================================================
+# Target rules for targets named local_udp_client
+
+# Build rule for target.
+local_udp_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 local_udp_client
+.PHONY : local_udp_client
+
+# fast build rule for target.
+local_udp_client/fast:
+	$(MAKE) -f CMakeFiles/local_udp_client.dir/build.make CMakeFiles/local_udp_client.dir/build
+.PHONY : local_udp_client/fast
+
+#=============================================================================
+# Target rules for targets named ping_server
+
+# Build rule for target.
+ping_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ping_server
+.PHONY : ping_server
+
+# fast build rule for target.
+ping_server/fast:
+	$(MAKE) -f CMakeFiles/ping_server.dir/build.make CMakeFiles/ping_server.dir/build
+.PHONY : ping_server/fast
+
+#=============================================================================
+# Target rules for targets named ping_client
+
+# Build rule for target.
+ping_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ping_client
+.PHONY : ping_client
+
+# fast build rule for target.
+ping_client/fast:
+	$(MAKE) -f CMakeFiles/ping_client.dir/build.make CMakeFiles/ping_client.dir/build
+.PHONY : ping_client/fast
+
+grace_client.o: grace_client.c.o
+
+.PHONY : grace_client.o
+
+# target to build an object file
+grace_client.c.o:
+	$(MAKE) -f CMakeFiles/grace_client.dir/build.make CMakeFiles/grace_client.dir/grace_client.c.o
+.PHONY : grace_client.c.o
+
+grace_client.i: grace_client.c.i
+
+.PHONY : grace_client.i
+
+# target to preprocess a source file
+grace_client.c.i:
+	$(MAKE) -f CMakeFiles/grace_client.dir/build.make CMakeFiles/grace_client.dir/grace_client.c.i
+.PHONY : grace_client.c.i
+
+grace_client.s: grace_client.c.s
+
+.PHONY : grace_client.s
+
+# target to generate assembly for a file
+grace_client.c.s:
+	$(MAKE) -f CMakeFiles/grace_client.dir/build.make CMakeFiles/grace_client.dir/grace_client.c.s
+.PHONY : grace_client.c.s
+
+grace_server.o: grace_server.c.o
+
+.PHONY : grace_server.o
+
+# target to build an object file
+grace_server.c.o:
+	$(MAKE) -f CMakeFiles/grace_server.dir/build.make CMakeFiles/grace_server.dir/grace_server.c.o
+.PHONY : grace_server.c.o
+
+grace_server.i: grace_server.c.i
+
+.PHONY : grace_server.i
+
+# target to preprocess a source file
+grace_server.c.i:
+	$(MAKE) -f CMakeFiles/grace_server.dir/build.make CMakeFiles/grace_server.dir/grace_server.c.i
+.PHONY : grace_server.c.i
+
+grace_server.s: grace_server.c.s
+
+.PHONY : grace_server.s
+
+# target to generate assembly for a file
+grace_server.c.s:
+	$(MAKE) -f CMakeFiles/grace_server.dir/build.make CMakeFiles/grace_server.dir/grace_server.c.s
+.PHONY : grace_server.c.s
 
 local_tcp_client.o: local_tcp_client.c.o
 
@@ -362,6 +468,60 @@ make_socket.c.s:
 	$(MAKE) -f CMakeFiles/make_socket.dir/build.make CMakeFiles/make_socket.dir/make_socket.c.s
 .PHONY : make_socket.c.s
 
+ping_client.o: ping_client.c.o
+
+.PHONY : ping_client.o
+
+# target to build an object file
+ping_client.c.o:
+	$(MAKE) -f CMakeFiles/ping_client.dir/build.make CMakeFiles/ping_client.dir/ping_client.c.o
+.PHONY : ping_client.c.o
+
+ping_client.i: ping_client.c.i
+
+.PHONY : ping_client.i
+
+# target to preprocess a source file
+ping_client.c.i:
+	$(MAKE) -f CMakeFiles/ping_client.dir/build.make CMakeFiles/ping_client.dir/ping_client.c.i
+.PHONY : ping_client.c.i
+
+ping_client.s: ping_client.c.s
+
+.PHONY : ping_client.s
+
+# target to generate assembly for a file
+ping_client.c.s:
+	$(MAKE) -f CMakeFiles/ping_client.dir/build.make CMakeFiles/ping_client.dir/ping_client.c.s
+.PHONY : ping_client.c.s
+
+ping_server.o: ping_server.c.o
+
+.PHONY : ping_server.o
+
+# target to build an object file
+ping_server.c.o:
+	$(MAKE) -f CMakeFiles/ping_server.dir/build.make CMakeFiles/ping_server.dir/ping_server.c.o
+.PHONY : ping_server.c.o
+
+ping_server.i: ping_server.c.i
+
+.PHONY : ping_server.i
+
+# target to preprocess a source file
+ping_server.c.i:
+	$(MAKE) -f CMakeFiles/ping_server.dir/build.make CMakeFiles/ping_server.dir/ping_server.c.i
+.PHONY : ping_server.c.i
+
+ping_server.s: ping_server.c.s
+
+.PHONY : ping_server.s
+
+# target to generate assembly for a file
+ping_server.c.s:
+	$(MAKE) -f CMakeFiles/ping_server.dir/build.make CMakeFiles/ping_server.dir/ping_server.c.s
+.PHONY : ping_server.c.s
+
 tcp_client.o: tcp_client.c.o
 
 .PHONY : tcp_client.o
@@ -478,15 +638,25 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... local_udp_client"
-	@echo "... local_udp_server"
-	@echo "... local_tcp_client"
-	@echo "... udp_client"
-	@echo "... local_tcp_server"
-	@echo "... udp_server"
-	@echo "... tcp_client"
-	@echo "... tcp_server"
 	@echo "... make_socket"
+	@echo "... grace_server"
+	@echo "... tcp_server"
+	@echo "... grace_client"
+	@echo "... tcp_client"
+	@echo "... local_tcp_server"
+	@echo "... udp_client"
+	@echo "... local_tcp_client"
+	@echo "... udp_server"
+	@echo "... local_udp_server"
+	@echo "... local_udp_client"
+	@echo "... ping_server"
+	@echo "... ping_client"
+	@echo "... grace_client.o"
+	@echo "... grace_client.i"
+	@echo "... grace_client.s"
+	@echo "... grace_server.o"
+	@echo "... grace_server.i"
+	@echo "... grace_server.s"
 	@echo "... local_tcp_client.o"
 	@echo "... local_tcp_client.i"
 	@echo "... local_tcp_client.s"
@@ -502,6 +672,12 @@ help:
 	@echo "... make_socket.o"
 	@echo "... make_socket.i"
 	@echo "... make_socket.s"
+	@echo "... ping_client.o"
+	@echo "... ping_client.i"
+	@echo "... ping_client.s"
+	@echo "... ping_server.o"
+	@echo "... ping_server.i"
+	@echo "... ping_server.s"
 	@echo "... tcp_client.o"
 	@echo "... tcp_client.i"
 	@echo "... tcp_client.s"
