@@ -28,7 +28,9 @@
 						15,
 						16,
 						17,
-						18
+						18,
+						19,
+						20
 					]
 				}
 			],
@@ -61,7 +63,9 @@
 						15,
 						16,
 						17,
-						18
+						18,
+						19,
+						20
 					]
 				}
 			],
@@ -149,6 +153,20 @@
 					"id" : "ping_server::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-ping_server-c41756479a4bf5344982.json",
 					"name" : "ping_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stream_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stream_client-4e860e18763d7afec79d.json",
+					"name" : "stream_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stream_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stream_server-9cfca061b856a0833757.json",
+					"name" : "stream_server",
 					"projectIndex" : 0
 				},
 				{

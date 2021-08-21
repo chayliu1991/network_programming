@@ -33,4 +33,6 @@ add_executable(addr_used addr_used.c)
 add_executable(addr_reuse addr_reuse.c)
 
 
+add_executable(stream_client stream_client.c)
+add_executable(stream_server stream_server.c)
 
