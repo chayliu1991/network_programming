@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-gcc-9 -g  -rdynamic CMakeFiles/grace_server.dir/grace_server.c.o  -o grace_server 

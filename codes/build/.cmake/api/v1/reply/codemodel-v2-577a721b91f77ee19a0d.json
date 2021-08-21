@@ -1,0 +1,199 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "batch_write::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-batch_write-329a432a70b7b60d4f53.json",
+					"name" : "batch_write",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "grace_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-grace_client-3c0b5e573be6051361eb.json",
+					"name" : "grace_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "grace_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-grace_server-fa1c30f9b16a7fdd10a5.json",
+					"name" : "grace_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "local_tcp_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-local_tcp_client-1aeb1ff8be016e909525.json",
+					"name" : "local_tcp_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "local_tcp_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-local_tcp_server-c2b697219ffddb70055c.json",
+					"name" : "local_tcp_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "local_udp_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-local_udp_client-beb7a39db224f5ec86f8.json",
+					"name" : "local_udp_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "local_udp_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-local_udp_server-07b15176fa4582b4d063.json",
+					"name" : "local_udp_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "make_socket::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-make_socket-3cbe2bdbf9d30cfa7517.json",
+					"name" : "make_socket",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ping_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ping_client-679f3f0178bbc2c6ecf0.json",
+					"name" : "ping_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ping_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ping_server-c41756479a4bf5344982.json",
+					"name" : "ping_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tcp_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tcp_client-810590312424b6ef92c5.json",
+					"name" : "tcp_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tcp_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tcp_server-3edb43508e4eb16d1202.json",
+					"name" : "tcp_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "udp_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-udp_client-3981e2f23e113aa1920e.json",
+					"name" : "udp_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "udp_connect_cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-udp_connect_cli-e5250833918b4ca08bef.json",
+					"name" : "udp_connect_cli",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "udp_connect_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-udp_connect_client-7741e176e9324cc94fa6.json",
+					"name" : "udp_connect_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "udp_connect_srv::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-udp_connect_srv-8b4ee2c6d65c6074050c.json",
+					"name" : "udp_connect_srv",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "udp_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-udp_server-160256adada0a4d5673a.json",
+					"name" : "udp_server",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/d/share/code/codes/build",
+		"source" : "/mnt/d/share/code/codes"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

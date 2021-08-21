@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-gcc-9 -g  -rdynamic CMakeFiles/tcp_server.dir/tcp_server.c.o  -o tcp_server 

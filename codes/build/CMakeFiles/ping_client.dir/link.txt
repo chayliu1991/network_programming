@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-gcc-9 -g  -rdynamic CMakeFiles/ping_client.dir/ping_client.c.o  -o ping_client 

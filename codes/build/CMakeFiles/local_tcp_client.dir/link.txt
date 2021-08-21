@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-gcc-9 -g  -rdynamic CMakeFiles/local_tcp_client.dir/local_tcp_client.c.o  -o local_tcp_client 

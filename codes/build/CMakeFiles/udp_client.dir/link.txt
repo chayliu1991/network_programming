@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-gcc-9 -g  -rdynamic CMakeFiles/udp_client.dir/udp_client.c.o  -o udp_client 

@@ -23,6 +23,12 @@ add_executable(grace_client grace_client.c)
 add_executable(ping_server ping_server.c)
 add_executable(ping_client ping_client.c)
 
+add_executable(batch_write batch_write.c)
+
+add_executable(udp_connect_client udp_connect_client.c)
+add_executable(udp_connect_cli udp_connect_cli.c)
+add_executable(udp_connect_srv udp_connect_srv.c)
+
 
 
 
