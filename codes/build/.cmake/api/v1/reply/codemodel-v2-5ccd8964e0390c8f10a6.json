@@ -26,7 +26,9 @@
 						13,
 						14,
 						15,
-						16
+						16,
+						17,
+						18
 					]
 				}
 			],
@@ -57,12 +59,28 @@
 						13,
 						14,
 						15,
-						16
+						16,
+						17,
+						18
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 0,
+					"id" : "addr_reuse::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-addr_reuse-2efd02d4fff78bcb6e4e.json",
+					"name" : "addr_reuse",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "addr_used::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-addr_used-8117d1fec28ee31047f7.json",
+					"name" : "addr_used",
+					"projectIndex" : 0
+				},
 				{
 					"directoryIndex" : 0,
 					"id" : "batch_write::@6890427a1f51a3e7e1df",

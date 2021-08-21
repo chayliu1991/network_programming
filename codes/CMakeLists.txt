@@ -29,6 +29,8 @@ add_executable(udp_connect_client udp_connect_client.c)
 add_executable(udp_connect_cli udp_connect_cli.c)
 add_executable(udp_connect_srv udp_connect_srv.c)
 
+add_executable(addr_used addr_used.c)
+add_executable(addr_reuse addr_reuse.c)
 
 
 
