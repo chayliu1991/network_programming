@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "udp_server"
+			"path" : "reliable_cli"
 		}
 	],
 	"backtrace" : 1,
@@ -24,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 8,
+				"line" : 36,
 				"parent" : 0
 			}
 		]
@@ -45,7 +45,7 @@
 			]
 		}
 	],
-	"id" : "udp_server::@6890427a1f51a3e7e1df",
+	"id" : "reliable_cli::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -57,8 +57,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "udp_server",
-	"nameOnDisk" : "udp_server",
+	"name" : "reliable_cli",
+	"nameOnDisk" : "reliable_cli",
 	"paths" : 
 	{
 		"build" : ".",
@@ -79,7 +79,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "udp_server.c",
+			"path" : "reliable_cli.c",
 			"sourceGroupIndex" : 0
 		}
 	],

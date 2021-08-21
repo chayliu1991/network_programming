@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "udp_connect_client"
+			"path" : "local_tcp_client"
 		}
 	],
 	"backtrace" : 1,
@@ -24,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 28,
+				"line" : 10,
 				"parent" : 0
 			}
 		]
@@ -45,7 +45,7 @@
 			]
 		}
 	],
-	"id" : "udp_connect_client::@6890427a1f51a3e7e1df",
+	"id" : "local_tcp_client::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -57,8 +57,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "udp_connect_client",
-	"nameOnDisk" : "udp_connect_client",
+	"name" : "local_tcp_client",
+	"nameOnDisk" : "local_tcp_client",
 	"paths" : 
 	{
 		"build" : ".",
@@ -79,7 +79,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "udp_connect_client.c",
+			"path" : "local_tcp_client.c",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "ping_server"
+			"path" : "ping_client"
 		}
 	],
 	"backtrace" : 1,
@@ -24,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 23,
+				"line" : 19,
 				"parent" : 0
 			}
 		]
@@ -45,7 +45,7 @@
 			]
 		}
 	],
-	"id" : "ping_server::@6890427a1f51a3e7e1df",
+	"id" : "ping_client::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -57,8 +57,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "ping_server",
-	"nameOnDisk" : "ping_server",
+	"name" : "ping_client",
+	"nameOnDisk" : "ping_client",
 	"paths" : 
 	{
 		"build" : ".",
@@ -79,7 +79,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ping_server.c",
+			"path" : "ping_client.c",
 			"sourceGroupIndex" : 0
 		}
 	],
