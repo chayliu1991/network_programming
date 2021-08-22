@@ -33,12 +33,14 @@ int tcp_server_listen(int port) {
 
     int rt1 = bind(listenfd, (struct sockaddr *) &server_addr, sizeof(server_addr));
     if (rt1 < 0) {
-        error(1, errno, "bind failed ");
+        fprintf(stderr, "bind() failed:%s\n", strerror(errno));
+        exit(EXIT_FAILURE);
     }
 
     int rt2 = listen(listenfd, 1024);
     if (rt2 < 0) {
-        error(1, errno, "listen failed ");
+        fprintf(stderr, "listen() failed:%s\n", strerror(errno));
+        exit(EXIT_FAILURE);
     }
 
     signal(SIGPIPE, SIG_IGN);
@@ -59,6 +61,7 @@ int main(int argc,char* agrv[])
     //@ 初始化 pollfd 数组，这个数组的第一个元素是 listen_fd，其余的用来记录将要连接的 connect_fd
     struct pollfd event_set[INIT_SIZE];
     event_set[0].fd = listen_fd;
+    //@ 监听套接字上的连接建立完成事件
     event_set[0].events = POLLRDNORM;
 
     //@ 用-1表示这个数组位置还没有被占用
