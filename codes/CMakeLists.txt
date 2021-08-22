@@ -35,3 +35,5 @@ add_executable(reliable_server reliable_server.c)
 
 add_executable(reliable_cli reliable_cli.c)
 add_executable(reliable_sev reliable_sev.c)
+
+add_executable(select_client select_client.c)
