@@ -37,3 +37,5 @@ add_executable(reliable_cli reliable_cli.c)
 add_executable(reliable_sev reliable_sev.c)
 
 add_executable(select_client select_client.c)
+
+add_executable(poll_server poll_server.c)
