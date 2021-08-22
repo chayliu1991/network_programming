@@ -46,3 +46,5 @@ add_executable(nonblocking_server nonblocking_server.c)
 add_executable(epoll_server epoll_server.c)
 add_executable(epoll_server_edge_trigger epoll_server_edge_trigger.c)
 add_executable(epoll_server_level_trigger epoll_server_level_trigger.c)
+
+add_executable(multi_process_server multi_process_server.c)
