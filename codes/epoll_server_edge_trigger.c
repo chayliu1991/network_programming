@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
 
     efd = epoll_create1(0);
     if (efd == -1) {
-         printf(stderr, "epoll_create1() failed:%s\n", strerror(errno));
+        fprintf(stderr, "epoll_create1() failed:%s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
 

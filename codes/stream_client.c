@@ -8,6 +8,7 @@
 #include <sys/uio.h>
 #include <sys/un.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #define SERV_PORT (50005)
 

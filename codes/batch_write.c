@@ -8,6 +8,7 @@
 #include <sys/uio.h>
 #include <sys/un.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #define SERV_PORT (50005)
 
@@ -30,7 +31,8 @@ int main(int argc, char *argv[]) {
   int connect_rt =
       connect(socket_fd, (struct sockaddr *)&server_addr, server_len);
   if (connect_rt < 0) {
-    error(1, errno, "connect failed ");
+    fprintf(stderr,"connect() failed %s\n",strerror(errno));
+    exit(EXIT_SUCCESS);
   }
 
   char buf[128];
@@ -43,7 +45,10 @@ int main(int argc, char *argv[]) {
   while (fgets(buf, sizeof(buf), stdin) != NULL) {
     iov[1].iov_len = strlen(buf);
     int n = htonl(iov[1].iov_len);
-    if (writev(socket_fd, iov, 2) < 0) error(1, errno, "writev failure");
+    if (writev(socket_fd, iov, 2) < 0) {
+      fprintf(stderr,"writev() failed %s\n",strerror(errno));
+      exit(EXIT_SUCCESS);
+    }
   }
   exit(0);
 }

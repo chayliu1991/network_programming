@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/un.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #define MAX_LINE 4096
 #define SERV_PORT (50005)

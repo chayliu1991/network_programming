@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.1)
+
 add_executable(make_socket make_socket.c)
 
 add_executable(tcp_server tcp_server.c)
@@ -48,3 +50,10 @@ add_executable(epoll_server_edge_trigger epoll_server_edge_trigger.c)
 add_executable(epoll_server_level_trigger epoll_server_level_trigger.c)
 
 add_executable(multi_process_server multi_process_server.c)
+
+
+add_executable(multi_thread_server multi_thread_server.c)
+target_link_libraries(multi_thread_server -lpthread)
+
+add_executable(thread_pool_server thread_pool_server.c)
+target_link_libraries(thread_pool_server -lpthread)
