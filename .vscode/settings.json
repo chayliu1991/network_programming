@@ -2,6 +2,11 @@
     "files.associations": {
         "signal.h": "c",
         "in.h": "c",
-        "errno.h": "c"
+        "errno.h": "c",
+        "channel.h": "c",
+        "acceptor.h": "c",
+        "common.h": "c",
+        "tcp_server.h": "c",
+        "event_loop.h": "c"
     }
 }
