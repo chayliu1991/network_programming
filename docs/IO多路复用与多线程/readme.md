@@ -43,6 +43,211 @@
 
 ![](./img/single_reactor_thread_worker_threads.png)
 
+# 程序示例
+
+## buffer
+
+可扩展的读写数据缓冲区：
+
+![](./img/buffer.png)
+
+```
+struct buffer {
+  char *data;      //实际缓冲
+  int readIndex;   //缓冲读取位置
+  int writeIndex;  //缓冲写入位置
+  int total_size;  //总大小
+};
+```
+
+实现：
+
+```
+/// buffer.c
+
+const char *CRLF = "\r\n";
+
+struct buffer *buffer_new() {
+  struct buffer *buf = malloc(sizeof(struct buffer));
+  if (!buf) return NULL;
+
+  buf->data = malloc(INIT_BUFFER_SIZE);
+  buf->total_size = INIT_BUFFER_SIZE;
+  buf->readIndex = 0;
+  buf->writeIndex = 0;
+  return buf;
+}
+
+void buffer_free(struct buffer *buffer) {
+  free(buffer->data);
+  free(buffer);
+}
+
+int buffer_writeable_size(struct buffer *buffer) {
+  return buffer->total_size - buffer->writeIndex;
+}
+
+int buffer_readable_size(struct buffer *buffer) {
+  return buffer->writeIndex - buffer->readIndex;
+}
+
+int buffer_front_spare_size(struct buffer *buffer) { return buffer->readIndex; }
+
+static void make_room(struct buffer *buffer, int size) {
+  if (buffer_writeable_size(buffer) >= size) {
+    return;
+  }
+  //@ 如果front_spare和writeable的大小加起来可以容纳数据，则把可读数据往前面拷贝
+  if (buffer_front_spare_size(buffer) + buffer_writeable_size(buffer) >= size) {
+    int readable = buffer_readable_size(buffer);
+    int i;
+    for (i = 0; i < readable; i++) {
+      memcpy(buffer->data + i, buffer->data + buffer->readIndex + i, 1);
+    }
+    buffer->readIndex = 0;
+    buffer->writeIndex = readable;
+  } else {
+    //@ 扩大缓冲区
+    void *tmp = realloc(buffer->data, buffer->total_size + size);
+    if (tmp == NULL) {
+      return;
+    }
+    buffer->data = tmp;
+    buffer->total_size += size;
+  }
+}
+
+int buffer_append(struct buffer *buffer, void *data, int size) {
+  if (data != NULL) {
+    make_room(buffer, size);
+    //@ 拷贝数据到可写空间中
+    memcpy(buffer->data + buffer->writeIndex, data, size);
+    buffer->writeIndex += size;
+  }
+}
+
+int buffer_append_char(struct buffer *buffer, char data) {
+  make_room(buffer, 1);
+  //@ 拷贝数据到可写空间中
+  buffer->data[buffer->writeIndex++] = data;
+}
+
+int buffer_append_string(struct buffer *buffer, char *data) {
+  if (data != NULL) {
+    int size = strlen(data);
+    buffer_append(buffer, data, size);
+  }
+}
+
+int buffer_socket_read(struct buffer *buffer, int fd) {
+  char additional_buffer[INIT_BUFFER_SIZE];
+  struct iovec vec[2];
+  int max_writable = buffer_writeable_size(buffer);
+  vec[0].iov_base = buffer->data + buffer->writeIndex;
+  vec[0].iov_len = max_writable;
+  vec[1].iov_base = additional_buffer;
+  vec[1].iov_len = sizeof(additional_buffer);
+  int result = readv(fd, vec, 2);
+  if (result < 0) {
+    return -1;
+  } else if (result <= max_writable) {
+    buffer->writeIndex += result;
+  } else {
+    buffer->writeIndex = buffer->total_size;
+    buffer_append(buffer, additional_buffer, result - max_writable);
+  }
+  return result;
+}
+
+char buffer_read_char(struct buffer *buffer) {
+  char c = buffer->data[buffer->readIndex];
+  buffer->readIndex++;
+  return c;
+}
+
+char *buffer_find_CRLF(struct buffer *buffer) {
+  char *crlf = memmem(buffer->data + buffer->readIndex,
+                      buffer_readable_size(buffer), CRLF, 2);
+  return crlf;
+}
+```
+
+## channel
+
+```
+struct channel {
+  int fd;
+  int events;  //@ 表示 event 类型
+
+  event_read_callback eventReadCallback;
+  event_write_callback eventWriteCallback;
+  void *data;  //@  callback data,
+               //@  可能是event_loop，也可能是tcp_server或者tcp_connection
+};
+```
+
+实现：
+
+```
+struct channel *channel_new(int fd, int events,
+                            event_read_callback eventReadCallback,
+                            event_write_callback eventWriteCallback,
+                            void *data) {
+  struct channel *chan = malloc(sizeof(struct channel));
+  chan->fd = fd;
+  chan->events = events;
+  chan->eventReadCallback = eventReadCallback;
+  chan->eventWriteCallback = eventWriteCallback;
+  chan->data = data;
+  return chan;
+}
+
+int channel_write_event_is_enabled(struct channel *channel) {
+  return channel->events & EVENT_WRITE;
+}
+
+int channel_write_event_enable(struct channel *channel) {
+  struct event_loop *eventLoop = (struct event_loop *)channel->data;
+  channel->events = channel->events | EVENT_WRITE;
+  event_loop_update_channel_event(eventLoop, channel->fd, channel);
+}
+
+int channel_write_event_disable(struct channel *channel) {
+  struct event_loop *eventLoop = (struct event_loop *)channel->data;
+  channel->events = channel->events & ~EVENT_WRITE;
+  event_loop_update_channel_event(eventLoop, channel->fd, channel);
+}
+```
+
+## event_loop
+
+```
+struct channel_element {
+  int type;  //@ 1: add  2: delete
+  struct channel *channel;
+  struct channel_element *next;
+};
+
+struct event_loop {
+  int quit;
+  const struct event_dispatcher *eventDispatcher;
+
+  //@ 对应的 event_dispatcher 的数据
+  void *event_dispatcher_data;
+  struct channel_map *channelMap;
+
+  int is_handle_pending;
+  struct channel_element *pending_head;
+  struct channel_element *pending_tail;
+
+  pthread_t owner_thread_id;
+  pthread_mutex_t mutex;
+  pthread_cond_t cond;
+  int socketPair[2];
+  char *thread_name;
+};
+```
+
 
 
 
