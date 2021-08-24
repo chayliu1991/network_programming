@@ -3,7 +3,8 @@
 #include <assert.h>
 
 //连接建立之后的callback
-int http_onConnectionCompleted(struct tcp_connection *tcpConnection) {
+int http_onConnectionCompleted(struct tcp_connection *tcpConnection)
+{
   msgx("connection completed");
   struct http_request *httpRequest = http_request_new();
   tcpConnection->request = httpRequest;
@@ -11,7 +12,8 @@ int http_onConnectionCompleted(struct tcp_connection *tcpConnection) {
 }
 
 int process_status_line(char *start, char *end,
-                        struct http_request *httpRequest) {
+                        struct http_request *httpRequest)
+{
   int size = end - start;
   // method
   char *space = memmem(start, end - start, " ", 1);
@@ -39,30 +41,39 @@ int process_status_line(char *start, char *end,
   return size;
 }
 
-int parse_http_request(struct buffer *input, struct http_request *httpRequest) {
+int parse_http_request(struct buffer *input, struct http_request *httpRequest)
+{
   int ok = 1;
-  while (httpRequest->current_state != REQUEST_DONE) {
-    if (httpRequest->current_state == REQUEST_STATUS) {
+  while (httpRequest->current_state != REQUEST_DONE)
+  {
+    if (httpRequest->current_state == REQUEST_STATUS)
+    {
       char *crlf = buffer_find_CRLF(input);
-      if (crlf) {
+      if (crlf)
+      {
         int request_line_size = process_status_line(
             input->data + input->readIndex, crlf, httpRequest);
-        if (request_line_size) {
-          input->readIndex += request_line_size;  // request line size
-          input->readIndex += 2;                  // CRLF size
+        if (request_line_size)
+        {
+          input->readIndex += request_line_size; // request line size
+          input->readIndex += 2;                 // CRLF size
           httpRequest->current_state = REQUEST_HEADERS;
         }
       }
-    } else if (httpRequest->current_state == REQUEST_HEADERS) {
+    }
+    else if (httpRequest->current_state == REQUEST_HEADERS)
+    {
       char *crlf = buffer_find_CRLF(input);
-      if (crlf) {
+      if (crlf)
+      {
         /**
          *    <start>-------<colon>:-------<crlf>
          */
         char *start = input->data + input->readIndex;
         int request_line_size = crlf - start;
         char *colon = memmem(start, request_line_size, ": ", 2);
-        if (colon != NULL) {
+        if (colon != NULL)
+        {
           char *key = malloc(colon - start + 1);
           strncpy(key, start, colon - start);
           key[colon - start] = '\0';
@@ -72,11 +83,13 @@ int parse_http_request(struct buffer *input, struct http_request *httpRequest) {
 
           http_request_add_header(httpRequest, key, value);
 
-          input->readIndex += request_line_size;  // request line size
-          input->readIndex += 2;                  // CRLF size
-        } else {
+          input->readIndex += request_line_size; // request line size
+          input->readIndex += 2;                 // CRLF size
+        }
+        else
+        {
           //读到这里说明:没找到，就说明这个是最后一行
-          input->readIndex += 2;  // CRLF size
+          input->readIndex += 2; // CRLF size
           httpRequest->current_state = REQUEST_DONE;
         }
       }
@@ -87,14 +100,16 @@ int parse_http_request(struct buffer *input, struct http_request *httpRequest) {
 
 // buffer是框架构建好的，并且已经收到部分数据的情况下
 // 注意这里可能没有收到全部数据，所以要处理数据不够的情形
-int http_onMessage(struct buffer *input, struct tcp_connection *tcpConnection) {
-  msgx("get message from tcp connection %s", tcpConnection->name);
+int http_onMessage(struct buffer *input, struct tcp_connection *tcpConnection)
+{
+  msgx("get message from tcp connection: %s", tcpConnection->name);
 
   struct http_request *httpRequest =
       (struct http_request *)tcpConnection->request;
   struct http_server *httpServer = (struct http_server *)tcpConnection->data;
 
-  if (parse_http_request(input, httpRequest) == 0) {
+  if (parse_http_request(input, httpRequest) == 0)
+  {
     char *error_response = "HTTP/1.1 400 Bad Request\r\n\r\n";
     tcp_connection_send_data(tcpConnection, error_response,
                              sizeof(error_response));
@@ -102,18 +117,21 @@ int http_onMessage(struct buffer *input, struct tcp_connection *tcpConnection) {
   }
 
   //处理完了所有的request数据，接下来进行编码和发送
-  if (http_request_current_state(httpRequest) == REQUEST_DONE) {
+  if (http_request_current_state(httpRequest) == REQUEST_DONE)
+  {
     struct http_response *httpResponse = http_response_new();
 
     // httpServer暴露的requestCallback回调
-    if (httpServer->requestCallback != NULL) {
+    if (httpServer->requestCallback != NULL)
+    {
       httpServer->requestCallback(httpRequest, httpResponse);
     }
     struct buffer *buffer = buffer_new();
     http_response_encode_buffer(httpResponse, buffer);
     tcp_connection_send_buffer(tcpConnection, buffer);
 
-    if (http_request_close_connection(httpRequest)) {
+    if (http_request_close_connection(httpRequest))
+    {
       tcp_connection_shutdown(tcpConnection);
     }
     http_request_reset(httpRequest);
@@ -121,15 +139,18 @@ int http_onMessage(struct buffer *input, struct tcp_connection *tcpConnection) {
 }
 
 //数据通过buffer写完之后的callback
-int http_onWriteCompleted(struct tcp_connection *tcpConnection) {
+int http_onWriteCompleted(struct tcp_connection *tcpConnection)
+{
   msgx("write completed");
   return 0;
 }
 
 //连接关闭之后的callback
-int http_onConnectionClosed(struct tcp_connection *tcpConnection) {
+int http_onConnectionClosed(struct tcp_connection *tcpConnection)
+{
   msgx("connection closed");
-  if (tcpConnection->request != NULL) {
+  if (tcpConnection->request != NULL)
+  {
     http_request_clear(tcpConnection->request);
     tcpConnection->request = NULL;
   }
@@ -138,7 +159,8 @@ int http_onConnectionClosed(struct tcp_connection *tcpConnection) {
 
 struct http_server *http_server_new(struct event_loop *eventLoop, int port,
                                     request_callback requestCallback,
-                                    int threadNum) {
+                                    int threadNum)
+{
   struct http_server *httpServer = malloc(sizeof(struct http_server));
   httpServer->requestCallback = requestCallback;
   //初始化acceptor
@@ -154,6 +176,7 @@ struct http_server *http_server_new(struct event_loop *eventLoop, int port,
   return httpServer;
 }
 
-void http_server_start(struct http_server *httpServer) {
+void http_server_start(struct http_server *httpServer)
+{
   tcp_server_start(httpServer->tcpServer);
 }
