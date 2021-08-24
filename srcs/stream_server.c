@@ -14,27 +14,32 @@
 
 static int s_count;
 
-static void sig_int(int signo) {
+static void sig_int(int signo)
+{
   printf("\nreceived %d datagrams\n", s_count);
   exit(0);
 }
 
-size_t readn(int fd, void *buffer, size_t length) {
+size_t readn(int fd, void *buffer, size_t length)
+{
   size_t count;
   ssize_t nread;
   char *ptr;
 
   ptr = buffer;
   count = length;
-  while (count > 0) {
+  while (count > 0)
+  {
     nread = read(fd, ptr, count);
 
-    if (nread < 0) {
+    if (nread < 0)
+    {
       if (errno == EINTR)
         continue;
       else
         return (-1);
-    } else if (nread == 0)
+    }
+    else if (nread == 0)
       break;
 
     count -= nread;
@@ -43,28 +48,34 @@ size_t readn(int fd, void *buffer, size_t length) {
   return (length - count);
 }
 
-size_t read_message(int fd, char *buffer, size_t length) {
+size_t read_message(int fd, char *buffer, size_t length)
+{
   u_int32_t msg_length;
   u_int32_t msg_type;
   int rc;
 
   rc = readn(fd, (char *)&msg_length, sizeof(u_int32_t));
-  if (rc != sizeof(u_int32_t)) return rc < 0 ? -1 : 0;
+  if (rc != sizeof(u_int32_t))
+    return rc < 0 ? -1 : 0;
   msg_length = ntohl(msg_length);
 
   rc = readn(fd, (char *)&msg_type, sizeof(msg_type));
-  if (rc != sizeof(u_int32_t)) return rc < 0 ? -1 : 0;
+  if (rc != sizeof(u_int32_t))
+    return rc < 0 ? -1 : 0;
 
-  if (msg_length > length) {
+  if (msg_length > length)
+  {
     return -1;
   }
 
   rc = readn(fd, buffer, msg_length);
-  if (rc != msg_length) return rc < 0 ? -1 : 0;
+  if (rc != msg_length)
+    return rc < 0 ? -1 : 0;
   return rc;
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   int listenfd;
   listenfd = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -79,13 +90,15 @@ int main(int argc, char **argv) {
 
   int rt1 =
       bind(listenfd, (struct sockaddr *)&server_addr, sizeof(server_addr));
-  if (rt1 < 0) {
+  if (rt1 < 0)
+  {
     fprintf(stderr, "bind() failed:%s\n", strerror(errno));
     exit(EXIT_FAILURE);
   }
 
   int rt2 = listen(listenfd, 1024);
-  if (rt2 < 0) {
+  if (rt2 < 0)
+  {
     fprintf(stderr, "listen() failed:%s\n", strerror(errno));
     exit(EXIT_FAILURE);
   }
@@ -97,7 +110,8 @@ int main(int argc, char **argv) {
   socklen_t client_len = sizeof(client_addr);
 
   if ((connfd = accept(listenfd, (struct sockaddr *)&client_addr,
-                       &client_len)) < 0) {
+                       &client_len)) < 0)
+  {
     fprintf(stderr, "accept() error:%s\n", strerror(errno));
     exit(EXIT_FAILURE);
   }
@@ -105,12 +119,16 @@ int main(int argc, char **argv) {
   char buf[128];
   s_count = 0;
 
-  while (1) {
+  while (1)
+  {
     int n = read_message(connfd, buf, sizeof(buf));
-    if (n < 0) {
+    if (n < 0)
+    {
       fprintf(stderr, "read_message() error\n");
       exit(EXIT_FAILURE);
-    } else if (n == 0) {
+    }
+    else if (n == 0)
+    {
       fprintf(stderr, "client closed\n");
       exit(EXIT_FAILURE);
     }

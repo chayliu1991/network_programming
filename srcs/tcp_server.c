@@ -1,10 +1,10 @@
+#include <errno.h>
+#include <netinet/in.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include <string.h>
-#include <netinet/in.h>
-#include <errno.h>
+#include <unistd.h>
 
 #define BUF_SIZE (1024)
 #define PORT_NUM (50005)
