@@ -16,7 +16,7 @@ struct channel_element {
   struct channel_element *next;
 };
 
-struct event_loop {
+struct  event_loop {
   int quit;
   const struct event_dispatcher *eventDispatcher;
 

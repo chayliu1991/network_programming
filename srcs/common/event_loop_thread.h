@@ -1,5 +1,5 @@
-#ifndef EVENT_LOOP_THREAD_H
-#define EVENT_LOOP_THREAD_H
+#ifndef __EVENT_LOOP_THREAD_H__
+#define __EVENT_LOOP_THREAD_H__
 
 #include <pthread.h>
 
@@ -18,4 +18,4 @@ int event_loop_thread_init(struct event_loop_thread *, int);
 //@ 由主线程调用，初始化一个子线程，并且让子线程开始运行event_loop
 struct event_loop *event_loop_thread_start(struct event_loop_thread *);
 
-#endif
+#endif  //! __EVENT_LOOP_THREAD_H__
