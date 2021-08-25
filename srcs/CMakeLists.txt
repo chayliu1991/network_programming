@@ -60,6 +60,9 @@ target_link_libraries(multi_thread_server -lpthread)
 add_executable(thread_pool_server thread_pool_server.c)
 target_link_libraries(thread_pool_server -lpthread)
 
+add_executable(aio aio.c)
+target_link_libraries(aio -lrt)
+
 add_subdirectory(common)
 link_directories(${CMAKE_SOURCE_DIR}/libs)
 include_directories(${PROJECT_SOURCE_DIR}/common)
