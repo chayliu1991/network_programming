@@ -28,11 +28,28 @@
 
 ![](./img/sync_async.png)
 
+# Linux下socket套接字的异步支持
 
+aio 系列函数是由 POSIX 定义的异步操作接口，可惜的是，Linux 下的 aio 操作，不是真正的操作系统级别支持的，它只是由GNU libc库函数在用户空间借由 pthread 方式实现的，而且仅仅针对磁盘类 I/O，套接字I/O不支持。
 
+Linux下对异步操作的支持非常有限，这也是为什么使用 epoll 等多路分发技术加上非阻塞I/O来解决Linux下高并发高性能网络 I/O 问题的根本原因。
 
+# Windows下的IOCP和Proactor模式
 
+和 Linux 不同，Windows 下实现了一套完整的支持套接字的异步编程接口，这套接口一般被叫做IOCompletetionPort(IOCP)。这样，就产生了基于IOCP的所谓Proactor 模式。和 Reactor 模式一样，Proactor 模式也存在一个无限循环运行的 event loop 线程，但是不同于 Reactor 模式，这个线程并不负责处理I/O调用，它只是负责在对应的 read、write 操作完成的情况下，分发完成事件到不同的处理函数。
 
+这里举一个HTTP服务请求的例子来说明：
+
+- 客户端发起一个GET请求
+- 这个GET请求对应的字节流被内核读取完成，内核将这个完成事件放置到一个队列中
+- event loop线程，也就是Poractor从这个队列里获取事件，根据事件类型，分发到不同的处理函数上，比如一个http handle的onMessage解析函数
+- HTTP request解析函数完成报文解析
+- 业务逻辑处理，比如读取数据库的记录
+- 业务逻辑处理完成，开始encode，完成之后，发起一个异步写操作
+- 这个异步写操作被内核执行，完成之后这个异步写操作被放置到内核的队列中
+- Proactor线程获取这个完成事件，分发到HTTP handler的onWriteCompled方法执行
+
+roactor不会再像Reactor一样，每次感知事件后再调用read、write方法完成数据的读写，它只负责感知事件完成，并由对应的handler发起异步读写请求，I/O读写操作本身是由系统内核完成的。
 
 
 
