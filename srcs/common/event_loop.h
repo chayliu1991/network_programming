@@ -10,13 +10,15 @@
 extern const struct event_dispatcher poll_dispatcher;
 extern const struct event_dispatcher epoll_dispatcher;
 
-struct channel_element {
-  int type;  //@ 1: add  2: delete
+struct channel_element
+{
+  int type; //@ 1: add  2: delete
   struct channel *channel;
   struct channel_element *next;
 };
 
-struct  event_loop {
+struct event_loop
+{
   int quit;
   const struct event_dispatcher *eventDispatcher;
 

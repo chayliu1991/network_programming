@@ -4,7 +4,8 @@
 #include "channel.h"
 
 /** 抽象的event_dispatcher结构体，对应的实现如select,poll,epoll等I/O复用. */
-struct event_dispatcher {
+struct event_dispatcher
+{
   /**  对应实现 */
   const char *name;
 
