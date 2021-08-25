@@ -1,5 +1,4 @@
 #include "http_server.h"
-
 #include <assert.h>
 
 //连接建立之后的callback
@@ -11,11 +10,10 @@ int http_onConnectionCompleted(struct tcp_connection *tcpConnection)
   return 0;
 }
 
-int process_status_line(char *start, char *end,
-                        struct http_request *httpRequest)
+int process_status_line(char *start, char *end, struct http_request *httpRequest)
 {
   int size = end - start;
-  // method
+  //method
   char *space = memmem(start, end - start, " ", 1);
   assert(space != NULL);
   int method_size = space - start;
@@ -23,7 +21,7 @@ int process_status_line(char *start, char *end,
   strncpy(httpRequest->method, start, space - start);
   httpRequest->method[method_size + 1] = '\0';
 
-  // url
+  //url
   start = space + 1;
   space = memmem(start, end - start, " ", 1);
   assert(space != NULL);
@@ -32,7 +30,7 @@ int process_status_line(char *start, char *end,
   strncpy(httpRequest->url, start, space - start);
   httpRequest->url[url_size + 1] = '\0';
 
-  // version
+  //version
   start = space + 1;
   httpRequest->version = malloc(end - start + 1);
   strncpy(httpRequest->version, start, end - start);
@@ -51,12 +49,11 @@ int parse_http_request(struct buffer *input, struct http_request *httpRequest)
       char *crlf = buffer_find_CRLF(input);
       if (crlf)
       {
-        int request_line_size = process_status_line(
-            input->data + input->readIndex, crlf, httpRequest);
+        int request_line_size = process_status_line(input->data + input->readIndex, crlf, httpRequest);
         if (request_line_size)
         {
           input->readIndex += request_line_size; // request line size
-          input->readIndex += 2;                 // CRLF size
+          input->readIndex += 2;                 //CRLF size
           httpRequest->current_state = REQUEST_HEADERS;
         }
       }
@@ -67,8 +64,8 @@ int parse_http_request(struct buffer *input, struct http_request *httpRequest)
       if (crlf)
       {
         /**
-         *    <start>-------<colon>:-------<crlf>
-         */
+                 *    <start>-------<colon>:-------<crlf>
+                 */
         char *start = input->data + input->readIndex;
         int request_line_size = crlf - start;
         char *colon = memmem(start, request_line_size, ": ", 2);
@@ -83,13 +80,13 @@ int parse_http_request(struct buffer *input, struct http_request *httpRequest)
 
           http_request_add_header(httpRequest, key, value);
 
-          input->readIndex += request_line_size; // request line size
-          input->readIndex += 2;                 // CRLF size
+          input->readIndex += request_line_size; //request line size
+          input->readIndex += 2;                 //CRLF size
         }
         else
         {
           //读到这里说明:没找到，就说明这个是最后一行
-          input->readIndex += 2; // CRLF size
+          input->readIndex += 2; //CRLF size
           httpRequest->current_state = REQUEST_DONE;
         }
       }
@@ -102,17 +99,15 @@ int parse_http_request(struct buffer *input, struct http_request *httpRequest)
 // 注意这里可能没有收到全部数据，所以要处理数据不够的情形
 int http_onMessage(struct buffer *input, struct tcp_connection *tcpConnection)
 {
-  msgx("get message from tcp connection: %s", tcpConnection->name);
+  msgx("get message from tcp connection %s", tcpConnection->name);
 
-  struct http_request *httpRequest =
-      (struct http_request *)tcpConnection->request;
+  struct http_request *httpRequest = (struct http_request *)tcpConnection->request;
   struct http_server *httpServer = (struct http_server *)tcpConnection->data;
 
   if (parse_http_request(input, httpRequest) == 0)
   {
     char *error_response = "HTTP/1.1 400 Bad Request\r\n\r\n";
-    tcp_connection_send_data(tcpConnection, error_response,
-                             sizeof(error_response));
+    tcp_connection_send_data(tcpConnection, error_response, sizeof(error_response));
     tcp_connection_shutdown(tcpConnection);
   }
 
@@ -121,7 +116,7 @@ int http_onMessage(struct buffer *input, struct tcp_connection *tcpConnection)
   {
     struct http_response *httpResponse = http_response_new();
 
-    // httpServer暴露的requestCallback回调
+    //httpServer暴露的requestCallback回调
     if (httpServer->requestCallback != NULL)
     {
       httpServer->requestCallback(httpRequest, httpResponse);
@@ -166,9 +161,9 @@ struct http_server *http_server_new(struct event_loop *eventLoop, int port,
   //初始化acceptor
   struct acceptor *acceptor = acceptor_init(SERV_PORT);
 
-  httpServer->tcpServer = tcp_server_init(
-      eventLoop, acceptor, http_onConnectionCompleted, http_onMessage,
-      http_onWriteCompleted, http_onConnectionClosed, threadNum);
+  httpServer->tcpServer = tcp_server_init(eventLoop, acceptor, http_onConnectionCompleted, http_onMessage,
+                                          http_onWriteCompleted,
+                                          http_onConnectionClosed, threadNum);
 
   // for callback
   httpServer->tcpServer->data = httpServer;

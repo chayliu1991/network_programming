@@ -69,3 +69,7 @@ target_link_libraries(reactor_single_thread_server libcommon.a -lpthread)
 
 add_executable(reactor_multi_thread_server reactor_multi_thread_server.c)
 target_link_libraries(reactor_multi_thread_server libcommon.a -lpthread)
+
+add_executable(http_server http_server.c)
+target_link_libraries(http_server libcommon.a -lpthread)
+

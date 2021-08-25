@@ -1,10 +1,9 @@
-d..#include "common.h"
+#include "common.h"
 #include "event_loop.h"
 #include "tcp_server.h"
 #include <acceptor.h>
 
-    char
-    rot13_char(char c)
+char rot13_char(char c)
 {
     if ((c >= 'a' && c <= 'm') || (c >= 'A' && c <= 'M'))
         return c + 13;

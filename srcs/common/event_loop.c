@@ -279,7 +279,6 @@ struct event_loop *event_loop_init_with_name(char *thread_name)
 }
 
 /**
- *
  * 1.参数验证
  * 2.调用dispatcher来进行事件分发,分发完回调事件处理函数
  */
