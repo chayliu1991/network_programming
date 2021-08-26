@@ -99,9 +99,39 @@ struct sockaddr_un {
 };
 ```
 
+## 新的通用套接字地址结构
+
+`sockaddr` 14 字节的 `sa_data` 无法容纳所有协议的地址值，因此定义新的通用套接字地址结构 `sockaddr_storage`：
+
+```
+/* Structure large enough to hold any socket address
+(with the historical exception of AF_UNIX). 128 bytes reserved.  */
+
+#if ULONG_MAX > 0xffffffff
+# define __ss_aligntype __uint64_t
+#else
+# define __ss_aligntype __uint32_t
+#endif
+#define _SS_SIZE        128
+#define _SS_PADSIZE     (_SS_SIZE - (2 * sizeof (__ss_aligntype)))
+
+struct sockaddr_storage
+{
+    sa_family_t ss_family;      /* Address family */
+    __ss_aligntype __ss_align;  /* Force desired alignment.  */
+    char __ss_padding[_SS_PADSIZE];
+};
+```
+
+- 如果系统支持的任何套接字地址结构有对齐需求，那么 `sockaddr_storage` 能够满足最苛刻的对齐要求
+
+- `sockaddr_storage` 足够大，能够容纳系统支持的任何套接字地址结构
+
 ## 几种套接字地址格式比较
 
 IPv4 和 IPv6 套接字地址结构的长度是固定的，而本地地址结构的长度是可变的：
 
 ![](./img/addr.png)
+
+
 
