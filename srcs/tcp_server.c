@@ -44,7 +44,6 @@ void read_data(int sockfd)
   int time = 0;
   for (;;)
   {
-    // fprintf(stdout, "block in read\n");
     if ((n = readn(sockfd, buf, BUF_SIZE)) == 0)
       return;
 

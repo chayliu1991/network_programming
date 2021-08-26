@@ -161,6 +161,8 @@ uint32_t ntohl( uint32_t net32bitvalue );
 
 ## IPv4 地址转换
 
+### inet_addr()
+
 ```
 #include <arpa/inet.h>
 
@@ -170,6 +172,8 @@ in_addr_t inet_addr(const char *cp);
 - 点分十进制字符串转换成网络字节序的整数表示
 - 失败时返回 `INADDR_NONE`
 
+### inet_aton()
+
 ```
 #include <arpa/inet.h>
 
@@ -178,6 +182,8 @@ int inet_aton( const char *strptr, struct in_addr *addrptr );
 
 -  与 `inet_addr()` 的功能相同，转换结果存放在参数 `inp` 指向的结构中 
 - 成功返回1，失败返回0
+
+### inet_ntoa()
 
 ```
 #include <arpa/inet.h>
@@ -191,6 +197,8 @@ char *inet_ntoa( struct in_addr inaddr );
 
 ## 兼容IPv4 和 IPv6 的转换
 
+### inet_pton()
+
 ```
 #include <arpa/inet.h>
 
@@ -202,10 +210,12 @@ int inet_pton(int af,const char* src,void* dst);
 - `dst` ：转换成的网络字节序的整数表示的 IP 地址
 - 成功返回1 ，失败返回0，设置 `errno`
 
+### inet_ntop()
+
 ```
 #include <arpa/inet.h>
 
-int char* inet_ntop(int af,const void* src,char* dst,socklen_t cnt);
+const char* inet_ntop(int af,const void* src,char* dst,socklen_t cnt);
 ```
 
 - `cnt`：指定目标存储单元的大小，可以借助宏：
@@ -310,10 +320,4 @@ ssize_t read_line(int fd,void* vptr,size_t maxlen)
 	return n;
 }
 ```
-
-
-
-
-
-
 
