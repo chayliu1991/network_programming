@@ -277,7 +277,7 @@ ssize_t writen(int fd,void* vptr,size_t n)
 	while(nleft > 0){
 		if((nwritten = write(fd,ptr,nleft)) < 0)
 		{
-			if(nwritten < 0 && errno != EINTR)
+			if(nwritten < 0 && errno == EINTR)
 				nwritten = 0;	//@ call write again
 			else
 				return -1;
