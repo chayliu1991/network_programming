@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/network_info.dir/network_info.c.o  -o bin/network_info 

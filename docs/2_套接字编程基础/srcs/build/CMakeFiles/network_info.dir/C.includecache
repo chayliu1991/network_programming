@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/d/share/code/docs/2_TCP 编程基础/srcs/network_info.c
+arpa/inet.h
+-
+errno.h
+-
+netdb.h
+-
+stdio.h
+-
+stdlib.h
+-
+

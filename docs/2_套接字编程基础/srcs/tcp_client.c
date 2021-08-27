@@ -65,6 +65,6 @@ int main(int argc, char *argv[])
             exit(EXIT_SUCCESS);
         }
         read_buf[BUF_SIZE - 1] = '\0';
-        printf("Client Received:%s\n", read_buf);
+        printf("client received:%s\n", read_buf);
     }
 }

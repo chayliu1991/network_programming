@@ -7,6 +7,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 #define SERVE_PORT (8088)
@@ -17,7 +18,6 @@ void errExit(const char *caller)
     fprintf(stderr, "%s  error: %s\n", caller, strerror(errno));
     exit(EXIT_FAILURE);
 }
-
 
 ssize_t writen(int fd, void *vptr, size_t n)
 {
@@ -45,55 +45,75 @@ ssize_t writen(int fd, void *vptr, size_t n)
 
 void sigchld_handler(int sig)
 {
-    while (waitpid(-1, 0, WNOHANG) > 0)
-        ;
+    pid_t pid;
+    int stat;
+    while ((pid = waitpid(-1, &stat, WNOHANG)) > 0)
+    {
+        printf("child %ld terminated\n", (long)pid);
+    };
     return;
 }
 
-int echo(int fd)
+const char *get_peer_info(int fd)
+{
+    static char peer_info[64] = {0};
+
+    struct sockaddr_in client_addr;
+    socklen_t client_len = sizeof(client_addr);
+    if (getpeername(fd, (struct sockaddr *)&client_addr, &client_len) == -1)
+    {
+        printf("getpeername() error:%s\n", strerror(errno));
+        return NULL;
+    }
+
+    char ip[INET_ADDRSTRLEN] = {0};
+    inet_ntop(AF_INET, &client_addr.sin_addr, ip, INET_ADDRSTRLEN);
+    snprintf(peer_info, sizeof(peer_info), "%s:%u", ip, ntohs(client_addr.sin_port));
+    return peer_info;
+}
+
+void echo(int fd)
 {
     char buf[BUF_SIZE];
     ssize_t n = 0;
 
-again:
-    while((n = read(fd,buf,BUF_SIZE-1)) >0)
+    while (n = read(fd, buf, BUF_SIZE - 1))
     {
-        buf[n] = '\0';
-        struct sockaddr_in client_addr;
-        socklen_t client_len = sizeof(client_addr);
-        if (getpeername(fd, (struct sockaddr *)&client_addr, &client_len) == -1)
+        if (n < 0 && n == EINTR)
+            continue;
+        else if (n < 0)
         {
-            printf("getpeername() error:%s\n", strerror(errno));
-        }
-        char ip[INET_ADDRSTRLEN] = {0};
-        inet_ntop(AF_INET, &client_addr.sin_addr, ip, INET_ADDRSTRLEN);
-        char info[64] = {0};
-        snprintf(info, sizeof(info), "%s:%u", ip, ntohs(client_addr.sin_port));
-
-        printf("Received From %s : %s\n", info, buf);
-        if (writen(fd, buf, n) != n)
-        {
-            printf("write error occured\n");
+            printf("read error occured\n");
             close(fd);
-            return 0;
+            break;
+        }
+        else if (n == 0)
+        {
+            printf("peer client closed\n");
+            close(fd);
+            break;
+        }
+        else
+        {
+            buf[n] = '\0';
+            const char *info = NULL;
+            if ((info = get_peer_info(fd)) == NULL)
+            {
+                printf("get_peer_info() error\n");
+                close(fd);
+                break;
+            }
+
+            printf("received from %s : %s\n", info, buf);
+            if (writen(fd, buf, n) != n)
+            {
+                printf("write error occured\n");
+                close(fd);
+                break;
+            }
         }
     }
-
-    if(n < 0 && errno == EINTR)
-         goto again;
-    
-    if(n == 0)
-    {
-        printf("peer client closed\n");
-        close(fd);   
-        return 0;  
-    }
-
-    printf("read error occured\n");
-    close(fd);
-    return -1;
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -124,6 +144,23 @@ int main(int argc, char *argv[])
     for (;;)
     {
         conn_fd = accept(listen_fd, (struct sockaddr *)&client_addr, &client_len);
+        if (conn_fd < 0)
+        {
+            if (errno == EINTR)
+                continue;
+            else
+                errExit("accept()");
+        }
+
+        const char *info;
+        if ((info = get_peer_info(conn_fd)) == NULL)
+        {
+            printf("get_peer_info() error\n");
+            close(conn_fd);
+            continue;
+        }
+        printf("a new connect from %s\n", info);
+
         switch (fork())
         {
         case -1:
