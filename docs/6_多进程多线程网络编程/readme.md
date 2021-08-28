@@ -13,9 +13,9 @@
 
 ![](./img/multi_thread.png)
 
+# 阻塞 I/O 和线程池模型
 
-
-
+![](./img/thread_pool.png)
 
 
 
