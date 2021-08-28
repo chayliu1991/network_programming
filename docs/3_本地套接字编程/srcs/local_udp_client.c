@@ -15,8 +15,7 @@
 
 void errExit(const char *errmsg)
 {
-    printf("%s:%s", errmsg, strerror(errno));
-    printf("  {%s}-{%s}-{%d}\n", __FILE__, __func__, __LINE__);
+    printf("%s:%s\n", errmsg, strerror(errno));
     exit(EXIT_FAILURE);
 }
 
