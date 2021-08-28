@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
     const char *local_path = argv[1];
     if (remove(local_path) == -1 && errno != ENOENT) //@ 移除所有的既有文件
         errExit("remove()");
-    unlink(local_path);
 
     int sock_fd = socket(AF_LOCAL, SOCK_DGRAM, 0);
     if (sock_fd < 0)
@@ -50,7 +49,7 @@ int main(int argc, char *argv[])
     struct sockaddr_un server_addr, client_addr;
     bzero(&server_addr, sizeof(server_addr));
     server_addr.sun_family = AF_LOCAL;
-    strcpy(server_addr.sun_path, local_path);
+    strncpy(server_addr.sun_path, local_path, sizeof(server_addr.sun_path) - 1);
     if (bind(sock_fd, (SA *)&server_addr, sizeof(server_addr)) < 0)
         errExit("bind()");
 

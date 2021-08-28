@@ -37,18 +37,17 @@ int main(int argc, char *argv[])
     const char *remote_path = argv[1];
     bzero(&server_addr, sizeof(server_addr));
     server_addr.sun_family = AF_LOCAL;
-    strcpy(server_addr.sun_path, remote_path);
+    strncpy(server_addr.sun_path, remote_path, sizeof(server_addr.sun_path) - 1);
     socklen_t server_len = sizeof(server_addr);
 
     //@ 客户端需要绑定自己的信息,否则服务器无法给客户端发送数据
     const char *local_path = argv[2];
     if (remove(local_path) == -1 && errno != ENOENT) //@ 移除所有的既有文件
         errExit("remove()");
-    unlink(local_path);
 
     bzero(&client_addr, sizeof(client_addr));
     client_addr.sun_family = AF_LOCAL;
-    strcpy(client_addr.sun_path, local_path);
+    strncpy(client_addr.sun_path, local_path, sizeof(client_addr.sun_path) - 1);
     if (bind(sock_fd, (SA *)&client_addr, sizeof(client_addr)) < 0)
         errExit("bind()");
 

@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     struct sockaddr_un server_addr;
     bzero(&server_addr, sizeof(server_addr));
     server_addr.sun_family = AF_LOCAL;
-    strcpy(server_addr.sun_path, local_path);
+    strncpy(server_addr.sun_path, local_path, sizeof(server_addr.sun_path) - 1);
 
     if (connect(sock_fd, (SA *)&server_addr, sizeof(server_addr)) < 0)
         errExit("connect()");
