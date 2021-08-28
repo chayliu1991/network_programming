@@ -78,11 +78,3 @@ if(bind(sockfd,(struct sockaddr*)&addr,sizeof(struct sockaddr_un)) == -1)
 	errExit("bind()");
 ```
 
-
-
-
-
-
-
-
-

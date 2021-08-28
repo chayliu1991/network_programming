@@ -258,6 +258,8 @@ ssize_t sendto(int sockfd,void* buf,size_t len,int flags,struct sockaddr* dest_a
 - `flags` 参数与 `recv()`/`send()` 的 `flags` 一致
 - `recvfrom()`/`sendto()` 系统调用也可以用于面向连接(STREAM)的 socket 的数据读写，只需要将最后两个参数都设置为 `NULL`
 - 返回值与 `send()`/`recv()` 一致 
+- 对于 `recvfrom()` 不管 `len` 的参数值是多少， `recvfrom()` 只会从一个数据报 socket 中读取一条消息，如果消息的长度超过了 `len`，那么消息将会静默被截断为 `len` 字节
+- 对于 `sendto()` 可以发送长度为 0 的数据报，但不是所有的 UNIX 实现都是如此
 
 # 通用读写
 
