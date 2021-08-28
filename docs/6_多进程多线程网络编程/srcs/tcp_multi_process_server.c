@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#define SA struct sockaddr
 #define SERVE_PORT (60006)
 #define BUF_SIZE (4096)
 
@@ -54,24 +55,6 @@ void sigchld_handler(int sig)
     return;
 }
 
-const char *get_peer_info(int fd)
-{
-    static char peer_info[64] = {0};
-
-    struct sockaddr_in client_addr;
-    socklen_t client_len = sizeof(client_addr);
-    if (getpeername(fd, (struct sockaddr *)&client_addr, &client_len) == -1)
-    {
-        printf("getpeername() error:%s\n", strerror(errno));
-        return NULL;
-    }
-
-    char ip[INET_ADDRSTRLEN] = {0};
-    inet_ntop(AF_INET, &client_addr.sin_addr, ip, INET_ADDRSTRLEN);
-    snprintf(peer_info, sizeof(peer_info), "%s:%u", ip, ntohs(client_addr.sin_port));
-    return peer_info;
-}
-
 void echo(int fd)
 {
     char buf[BUF_SIZE];
@@ -96,15 +79,7 @@ void echo(int fd)
         else
         {
             buf[n] = '\0';
-            const char *info = NULL;
-            if ((info = get_peer_info(fd)) == NULL)
-            {
-                printf("get_peer_info() error\n");
-                close(fd);
-                break;
-            }
-
-            printf("received from %s : %s\n", info, buf);
+            printf("receiver received : %s\n", buf);
             if (writen(fd, buf, n) != n)
             {
                 printf("write error occured\n");
@@ -133,7 +108,7 @@ int main(int argc, char *argv[])
     server_addr.sin_port = htons(SERVE_PORT);
     server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-    if (bind(listen_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
+    if (bind(listen_fd, (SA *)&server_addr, sizeof(server_addr)) < 0)
         errExit("bind()");
 
     if (listen(listen_fd, 1024) < 0)
@@ -143,7 +118,7 @@ int main(int argc, char *argv[])
     int conn_fd;
     for (;;)
     {
-        conn_fd = accept(listen_fd, (struct sockaddr *)&client_addr, &client_len);
+        conn_fd = accept(listen_fd, (SA *)&client_addr, &client_len);
         if (conn_fd < 0)
         {
             if (errno == EINTR)
@@ -152,14 +127,7 @@ int main(int argc, char *argv[])
                 errExit("accept()");
         }
 
-        const char *info;
-        if ((info = get_peer_info(conn_fd)) == NULL)
-        {
-            printf("get_peer_info() error\n");
-            close(conn_fd);
-            continue;
-        }
-        printf("a new connect from %s\n", info);
+        printf("a new connect\n");
 
         switch (fork())
         {
