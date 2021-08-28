@@ -1,5 +1,0 @@
-/mnt/d/share/code/docs/2_TCP 编程基础/srcs/build/CMakeFiles/rebuild_cache.dir
-/mnt/d/share/code/docs/2_TCP 编程基础/srcs/build/CMakeFiles/edit_cache.dir
-/mnt/d/share/code/docs/2_TCP 编程基础/srcs/build/CMakeFiles/tcp_server.dir
-/mnt/d/share/code/docs/2_TCP 编程基础/srcs/build/CMakeFiles/tcp_client.dir
-/mnt/d/share/code/docs/2_TCP 编程基础/srcs/build/CMakeFiles/network_info.dir
