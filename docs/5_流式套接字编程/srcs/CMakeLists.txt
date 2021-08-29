@@ -10,3 +10,5 @@ add_executable(tcp_server tcp_server.c)
 
 add_executable(ping_pang_server ping_pang_server.c)
 add_executable(ping_pang_client ping_pang_client.c)
+
+add_executable(batch_write batch_write.c)

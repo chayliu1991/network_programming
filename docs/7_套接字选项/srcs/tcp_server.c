@@ -13,6 +13,7 @@
 #define BUF_SIZE (4096)
 
 static int s_count = 0;
+
 void errExit(const char *caller)
 {
     fprintf(stderr, "%s  error: %s\n", caller, strerror(errno));
