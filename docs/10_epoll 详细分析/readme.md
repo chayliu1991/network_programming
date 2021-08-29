@@ -786,19 +786,3 @@ static int do_select(int n, fd_set_bits *fds, struct timespec64 *end_time)
 ...
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
