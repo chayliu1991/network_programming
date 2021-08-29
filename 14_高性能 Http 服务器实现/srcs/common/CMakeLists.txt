@@ -49,7 +49,7 @@ endif ()
 add_library(common_lib STATIC ${LIBSRCS})
 set_target_properties(common_lib PROPERTIES OUTPUT_NAME "common")
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/libs)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/build/libs)
 
 
 
