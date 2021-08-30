@@ -1,0 +1,7 @@
+/mnt/d/share/code/9_IO 复用/srcs/build/CMakeFiles/rebuild_cache.dir
+/mnt/d/share/code/9_IO 复用/srcs/build/CMakeFiles/epoll_server_level_trigger.dir
+/mnt/d/share/code/9_IO 复用/srcs/build/CMakeFiles/epoll_server_edge_trigger.dir
+/mnt/d/share/code/9_IO 复用/srcs/build/CMakeFiles/edit_cache.dir
+/mnt/d/share/code/9_IO 复用/srcs/build/CMakeFiles/epoll_server.dir
+/mnt/d/share/code/9_IO 复用/srcs/build/CMakeFiles/poll_server.dir
+/mnt/d/share/code/9_IO 复用/srcs/build/CMakeFiles/select_server.dir

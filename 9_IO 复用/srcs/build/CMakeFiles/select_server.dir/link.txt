@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/select_server.dir/select_server.c.o  -o bin/select_server 

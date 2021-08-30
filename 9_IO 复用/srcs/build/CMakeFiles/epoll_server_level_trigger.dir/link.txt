@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/epoll_server_level_trigger.dir/epoll_server_level_trigger.c.o  -o bin/epoll_server_level_trigger 

@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/poll_sercer.dir/poll_sercer.c.o  -o bin/poll_sercer 

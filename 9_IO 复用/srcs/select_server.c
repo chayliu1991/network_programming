@@ -57,82 +57,94 @@ int tcp_nonblocking_server_listen(int port)
     return listen_fd;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-    int i, maxi, max_fd, conn_fd, sock_fd;
-    int nready, client[FD_SETSIZE];
-    ssize_t n;
-    fd_set rset, all_set;
-    char buf[BUF_SIZE];
-    socklen_t client_len;
-    struct sockaddr_in client_addr, server_addr;
+    int clients[FD_SETSIZE];
+    for (int i = 0; i < FD_SETSIZE; i++)
+        clients[i] = -1;
 
     int listen_fd = tcp_nonblocking_server_listen(SERVE_PORT);
-    max_fd = listen_fd;
-    maxi = -1;
-    for (i = 0; i < FD_SETSIZE; i++)
-        client[i] = -1;
-    FD_ZERO(&all_set);
-    FD_SET(listen_fd, &all_set);
+    fd_set set, allset;
+    FD_ZERO(&allset);
+    FD_SET(listen_fd, &allset);
 
+    int conn_fd, max_client_index;
+    int max_fd = listen_fd;
+    struct sockaddr_in client_addr;
+    char buf[BUF_SIZE];
     for (;;)
     {
-        rset = all_set;
-        nready = select(max_fd + 1, &rset, NULL, NULL, NULL);
+        set = allset; //@ 每次循环都要重置想要获取的事件
+        int nready = select(max_fd + 1, &set, NULL, NULL, NULL);
         if (nready < 0)
             errExit("select()");
 
-        if (FD_ISSET(listen_fd, &rset))
+        //@ 监听套接字上有可读事件
+        if (FD_ISSET(listen_fd, &set))
         {
-            client_len = sizeof(client_addr);
+            socklen_t client_len = sizeof(client_addr);
             conn_fd = accept(listen_fd, (SA *)&client_addr, &client_len);
             if (conn_fd < 0)
                 errExit("accept()");
 
+            int i;
             for (i = 0; i < FD_SETSIZE; i++)
             {
-                if (client[i] < 0)
+                if (clients[i] == -1)
                 {
-                    client[i] = conn_fd;
+                    clients[i] = conn_fd;
                     break;
                 }
             }
-
             if (i == FD_SETSIZE)
             {
                 printf("too many clients\n");
                 exit(EXIT_FAILURE);
             }
-            FD_SET(conn_fd, &all_set);
+
+            FD_SET(conn_fd, &allset);
             if (conn_fd > max_fd)
                 max_fd = conn_fd;
-            if (i > maxi)
-                maxi = i;
+            if (i > max_client_index)
+                max_client_index = i;
+
+            //@ 没有更对的就绪事件可供处理
             if (--nready <= 0)
                 continue;
         }
 
-        for (i = 0; i <= maxi; i++)
+        //@ 遍历所有的客户端看看是否存在就绪事件
+        for (int i = 0; i <= max_client_index; i++)
         {
-            if ((sock_fd = client[i]) < 0)
+            int fd = clients[i];
+            if (fd < 0)
                 continue;
-            if (FD_ISSET(sock_fd, &rset))
+            if (FD_ISSET(fd, &set))
             {
-                if ((n = read(sock_fd, buf, BUF_SIZE - 1)) == 0)
+                int nbytes = read(fd, buf, BUF_SIZE - 1);
+                if (nbytes == 0)
                 {
                     printf("peer client closed\n");
-                    FD_CLR(sock_fd, &all_set);
-                    close(sock_fd);
-                    client[i] = -1;
+                    FD_CLR(fd, &set);
+                    close(fd);
+                    continue;
+                }
+                else if (nbytes < 0)
+                {
+                    printf("read error\n");
+                    FD_CLR(fd, &set);
+                    close(fd);
+                    continue;
                 }
                 else
                 {
-                    buf[n] = '\0';
-                    printf("server received :%d : %s\n", strlen(buf), buf);
-                    if (write(sock_fd, buf, n) < 0)
+                    buf[nbytes] = '\0';
+                    printf("server received :%d : %s\n", nbytes, buf);
+                    if (write(fd, buf, nbytes) < 0)
                         errExit("write()");
                 }
 
+                //@ 没有更对的就绪事件可供处理
                 if (--nready <= 0)
                     break;
             }

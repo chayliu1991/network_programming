@@ -60,34 +60,30 @@ int tcp_nonblocking_server_listen(int port)
 
 int main(int argc, char **argv)
 {
-    int listen_fd, socket_fd;
-    int n, i;
-    int efd;
-    struct epoll_event event;
-    struct epoll_event *events;
-
-    listen_fd = tcp_nonblocking_server_listen(SERV_PORT);
-
-    efd = epoll_create1(0);
+    int listen_fd = tcp_nonblocking_server_listen(SERV_PORT);
+    int efd = epoll_create1(0);
     if (efd == -1)
         errExit("epoll_create1()");
 
+    struct epoll_event event;
     event.data.fd = listen_fd;
-    event.events = EPOLLIN | EPOLLET;
+    event.events = EPOLLIN | EPOLLET; //@ edge trigger
+    //@ 添加 listen_fd 到 epollfd
     if (epoll_ctl(efd, EPOLL_CTL_ADD, listen_fd, &event) == -1)
-    {
-        printf("epoll_ctl() failed:%s\n", strerror(errno));
-        exit(EXIT_FAILURE);
-    }
+        errExit("epoll_ctl() - ADD");
 
     /* Buffer where events are returned */
+    struct epoll_event *events;
     events = calloc(MAXEVENTS, sizeof(event));
-
     while (1)
     {
-        n = epoll_wait(efd, events, MAXEVENTS, -1);
+        int nready = epoll_wait(efd, events, MAXEVENTS, -1);
+        if (nready < 0)
+            errExit("epoll_wait()");
         printf("epoll_wait wakeup\n");
-        for (i = 0; i < n; i++)
+
+        int i;
+        for (i = 0; i < nready; i++)
         {
             if ((events[i].events & EPOLLERR) || (events[i].events & EPOLLHUP) || (!(events[i].events & EPOLLIN)))
             {
@@ -97,35 +93,30 @@ int main(int argc, char **argv)
             }
             else if (listen_fd == events[i].data.fd)
             {
-                struct sockaddr_storage ss;
-                socklen_t slen = sizeof(ss);
-                int fd = accept(listen_fd, (struct sockaddr *)&ss, &slen);
+                struct sockaddr_in client_addr;
+                socklen_t clien_len = sizeof(client_addr);
+                int fd = accept(listen_fd, (SA *)&client_addr, &clien_len);
                 if (fd < 0)
-                {
-                    printf("accept() failed:%s\n", strerror(errno));
-                    exit(EXIT_FAILURE);
-                }
+                    errExit("accept()");
                 else
                 {
                     make_nonblocking(fd);
                     event.data.fd = fd;
                     event.events = EPOLLIN | EPOLLET; //edge-triggered
                     if (epoll_ctl(efd, EPOLL_CTL_ADD, fd, &event) == -1)
-                    {
-                        printf("epoll_ctl() failed:%s\n", strerror(errno));
-                        exit(EXIT_FAILURE);
-                    }
+                        errExit("epoll_ctl() - ADD");
                 }
                 continue;
             }
             else
             {
-                socket_fd = events[i].data.fd;
-                printf("get event on socket fd == %d \n", socket_fd);
+                int fd = events[i].data.fd;
+                printf("get event on socket fd == %d \n", fd);
             }
         }
     }
 
     free(events);
     close(listen_fd);
+    exit(EXIT_SUCCESS);
 }

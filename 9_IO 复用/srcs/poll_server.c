@@ -57,41 +57,37 @@ int tcp_nonblocking_server_listen(int port)
     return listen_fd;
 }
 
-int main(int argc, char *agrv[])
+int main(int argc, char *argv[])
 {
     int listen_fd = tcp_nonblocking_server_listen(SERVE_PORT);
-
-    //@ 初始化 pollfd 数组，这个数组的第一个元素是 listen_fd，其余的用来记录将要连接的 connect_fd
     struct pollfd event_set[INIT_SIZE];
+    //@ 初始化 pollfd 数组，这个数组的第一个元素是 listen_fd，其余的用来记录将要连接的 connect_fd
     event_set[0].fd = listen_fd;
-    //@ 监听套接字上的连接建立完成事件
-    event_set[0].events = POLLRDNORM;
+    event_set[0].events = POLLRDNORM; //@ 监听套接字上的连接建立完成事件
 
-    //@ 用-1表示这个数组位置还没有被占用
-    int i;
-    for (i = 1; i < INIT_SIZE; i++)
+    //@ 用 -1 表示这个数组位置还没有被占用
+    for (int i = 1; i < INIT_SIZE; i++)
         event_set[i].fd = -1;
 
-    int ready;
-    ssize_t n;
     char buf[BUF_SIZE];
     struct sockaddr_in client_addr;
-    int conn_fd;
     for (;;)
     {
-        if ((ready = poll(event_set, INIT_SIZE, -1)) < 0)
+        int nready = poll(event_set, INIT_SIZE, -1);
+        if (nready < 0)
             errExit("poll()");
 
-        if (event_set[0].revents & POLLRDNORM)
+        if (event_set[0].events & POLLRDNORM)
         {
             socklen_t client_len = sizeof(client_addr);
-            conn_fd = accept(listen_fd, (SA *)&client_addr, &client_len);
+            int conn_fd = accept(listen_fd, (SA *)&client_addr, &client_len);
             if (conn_fd < 0)
                 errExit("accept()");
 
+            int i;
             for (i = 1; i < INIT_SIZE; i++)
             {
-                if (event_set[i].fd < 0)
+                if (event_set[i].fd == -1)
                 {
                     event_set[i].fd = conn_fd;
                     event_set[i].events = POLLRDNORM;
@@ -105,43 +101,35 @@ int main(int argc, char *agrv[])
                 exit(EXIT_FAILURE);
             }
 
-            if (--ready <= 0)
+            if (--nready <= 0)
                 continue;
         }
 
-        for (i = 1; i < INIT_SIZE; i++)
+        for (int i = 1; i < INIT_SIZE; i++)
         {
-            int socket_fd;
-            if ((socket_fd = event_set[i].fd) < 0)
-                continue;
-
-            if (event_set[i].revents & (POLLRDNORM | POLLERR))
+            int fd = event_set[i].fd;
+            if (event_set[i].events & (POLLRDNORM | POLLERR))
             {
-                if ((n = read(socket_fd, buf, BUF_SIZE - 1)) > 0)
+                int nbytes = read(fd, buf, BUF_SIZE - 1);
+                if (nbytes > 0)
                 {
-                    buf[n] = '\0';
-                    printf("server received %d butes : %s\n", strlen(buf), buf);
-                    if (write(socket_fd, buf, n) < 0)
-                    {
-                        fprintf(stderr, "write() failed:%s\n", strerror(errno));
-                        exit(EXIT_FAILURE);
-                    }
+                    buf[nbytes] = '\0';
+                    printf("server received : %d : %s\n", nbytes, buf);
+                    if (write(fd, buf, nbytes) != nbytes)
+                        errExit("write()");
                 }
-                else if (n == 0 || errno == ECONNRESET)
+                else if (nbytes == 0 || errno == ECONNRESET)
                 {
-                    printf("peer reset\n");
-                    close(socket_fd);
+                    printf("peer client closed\n");
                     event_set[i].fd = -1;
+                    close(fd);
                 }
                 else
-                {
-                    fprintf(stderr, "read() failed:%s\n", strerror(errno));
-                    exit(EXIT_FAILURE);
-                }
-
-                if (--ready <= 0)
-                    break;
+                    errExit("read()");
             }
+
+            if (--nready <= 0)
+                break;
         }
     }
 }

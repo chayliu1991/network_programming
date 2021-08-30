@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/d/share/code/9_IO 复用/srcs/poll_server.c
+arpa/inet.h
+-
+errno.h
+-
+fcntl.h
+-
+netinet/in.h
+-
+signal.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+sys/poll.h
+-
+sys/socket.h
+-
+sys/time.h
+-
+sys/types.h
+-
+sys/un.h
+-
+unistd.h
+-
+

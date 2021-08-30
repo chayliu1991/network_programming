@@ -58,30 +58,25 @@ int tcp_nonblocking_server_listen(int port)
 
 int main(int argc, char **argv)
 {
-    int listen_fd, socket_fd;
-    int n, i;
+    int listen_fd = tcp_nonblocking_server_listen(SERV_PORT);
     int efd;
-    struct epoll_event event;
-    struct epoll_event *events;
-
-    listen_fd = tcp_nonblocking_server_listen(SERV_PORT);
-
     if ((efd = epoll_create1(0)) < 0)
         errExit("epoll_create1()");
 
+    struct epoll_event event;
     event.data.fd = listen_fd;
     event.events = EPOLLIN | EPOLLET;
     if (epoll_ctl(efd, EPOLL_CTL_ADD, listen_fd, &event) < 0)
-        errExit("epoll_ctl()");
+        errExit("epoll_ctl()-ADD");
 
+    struct epoll_event *events;
     /* Buffer where events are returned */
     events = calloc(MAXEVENTS, sizeof(event));
-
     while (1)
     {
-        n = epoll_wait(efd, events, MAXEVENTS, -1);
+        int n = epoll_wait(efd, events, MAXEVENTS, -1);
         printf("epoll_wait wakeup\n");
-        for (i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             if ((events[i].events & EPOLLERR) || (events[i].events & EPOLLHUP) || (!(events[i].events & EPOLLIN)))
             {
@@ -114,7 +109,7 @@ int main(int argc, char **argv)
             }
             else
             {
-                socket_fd = events[i].data.fd;
+                int socket_fd = events[i].data.fd;
                 printf("get event on socket fd == %d \n", socket_fd);
                 while (1)
                 {
@@ -149,4 +144,5 @@ int main(int argc, char **argv)
 
     free(events);
     close(listen_fd);
+    exit(EXIT_SUCCESS);
 }
